@@ -6,6 +6,7 @@ import qasync
 from PyQt6.QtWidgets import QApplication
 from core.bar_manager import BarManager
 from core.config import get_config_and_stylesheet, get_resolved_env_file_path
+from core.event_enums import SystrayEvent
 from core.log import init_logger
 from core.tray import TrayIcon
 from core.watcher import create_observer
@@ -60,6 +61,9 @@ def main():
             observer.join()
 
     app.aboutToQuit.connect(stop_observer)
+
+    # Emit bars created event for some widgets (like systray)
+    EventService().emit_event(SystrayEvent.BarsInitializationCompleted)
 
     with loop:
         loop.run_forever()

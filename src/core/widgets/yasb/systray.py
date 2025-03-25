@@ -11,6 +11,7 @@ from PyQt6.QtCore import (
     Qt,
     QThread,
     QTimer,
+    pyqtSignal,
     pyqtSlot,  # pyright: ignore [reportUnknownVariableType]
 )
 from PyQt6.QtGui import QShowEvent
@@ -21,6 +22,8 @@ from PyQt6.QtWidgets import (
     QPushButton,
 )
 
+from core.event_enums import SystrayEvent
+from core.event_service import EventService
 from core.utils.systray.systray_widget import DropWidget, IconState, IconWidget
 from core.utils.systray.tray_monitor import IconData, TrayMonitor
 from core.utils.systray.win_types import (
@@ -68,6 +71,7 @@ class SystrayWidget(BaseWidget):
     validation_schema: dict[str, dict[str, str | bool | int]] = VALIDATION_SCHEMA
     _instance = None
     _thread = None
+    on_taskbar_created = pyqtSignal()
 
     @classmethod
     def get_client_instance(cls):
@@ -167,7 +171,9 @@ class SystrayWidget(BaseWidget):
 
         self.unpinned_vis_btn.setVisible(self.show_unpinned_button)
 
-        QTimer.singleShot(0, self.setup_client)  # pyright: ignore [reportUnknownMemberType]
+        # Register an event to be emitted when the bar finisehd initialising
+        EventService().register_event(SystrayEvent.BarsInitializationCompleted, self.on_taskbar_created)
+        self.on_taskbar_created.connect(self.setup_client)  # type: ignore
 
     def setup_client(self):
         """Setup the tray monitor client and connect signals"""

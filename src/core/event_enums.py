@@ -14,6 +14,10 @@ class Event(Enum, metaclass=MetaEvent):
     pass
 
 
+class SystrayEvent(Event):
+    BarsInitializationCompleted = "BarsInitializationCompleted"
+
+
 class KomorebiEvent(Event):
     KomorebiConnect = "KomorebiConnect"
     KomorebiUpdate = "KomorebiUpdate"
@@ -35,7 +39,7 @@ class KomorebiEvent(Event):
     Manage = "Manage"
     Unmanage = "Unmanage"
     Cloak = "Cloak"
-    CloseWorkspace  = "CloseWorkspace"
+    CloseWorkspace = "CloseWorkspace"
     MoveContainerToMonitorNumber = "MoveContainerToMonitorNumber"
     MoveContainerToWorkspaceNumber = "MoveContainerToWorkspaceNumber"
     MoveWorkspaceToMonitorNumber = "MoveWorkspaceToMonitorNumber"
@@ -43,3 +47,4 @@ class KomorebiEvent(Event):
     SendContainerToMonitorNumber = "SendContainerToMonitorNumber"
     SendContainerToWorkspaceNumber = "SendContainerToWorkspaceNumber"
     WorkspaceName = "WorkspaceName"
+
