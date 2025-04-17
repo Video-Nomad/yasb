@@ -2,9 +2,9 @@ import re
 import json
 from collections import deque
 
-from PyQt6.QtWidgets import QHBoxLayout, QLabel, QWidget
-from PyQt6.QtCore import Qt, QUrl
-from PyQt6.QtNetwork import QAuthenticator, QNetworkAccessManager, QNetworkRequest, QNetworkReply
+from PySide6.QtWidgets import QHBoxLayout, QLabel, QWidget
+from PySide6.QtCore import Qt, QUrl
+from PySide6.QtNetwork import QAuthenticator, QNetworkAccessManager, QNetworkRequest, QNetworkReply
 
 from core.validation.widgets.yasb.libre_monitor import VALIDATION_SCHEMA
 from core.widgets.base import BaseWidget

@@ -8,9 +8,9 @@ import threading
 from datetime import datetime
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.weather import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget, QVBoxLayout
-from PyQt6.QtCore import Qt, QTimer, QPoint
-from PyQt6.QtGui import QPixmap
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget, QVBoxLayout
+from PySide6.QtCore import Qt, QTimer, QPoint
+from PySide6.QtGui import QPixmap
 from core.utils.utilities import PopupWidget
 from core.utils.widgets.animation_manager import AnimationManager
 from settings import DEBUG

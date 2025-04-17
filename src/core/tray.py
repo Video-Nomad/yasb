@@ -8,9 +8,9 @@ import webbrowser
 from pathlib import Path
 
 import winshell
-from PyQt6.QtCore import QEvent, QSize, Qt
-from PyQt6.QtGui import QGuiApplication, QIcon
-from PyQt6.QtWidgets import QMenu, QMessageBox, QSystemTrayIcon
+from PySide6.QtCore import QEvent, QSize, Qt
+from PySide6.QtGui import QGuiApplication, QIcon
+from PySide6.QtWidgets import QMenu, QMessageBox, QSystemTrayIcon
 
 from core.bar_manager import BarManager
 from core.config import get_config

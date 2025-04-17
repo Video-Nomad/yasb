@@ -10,8 +10,8 @@ from datetime import datetime
 from urllib.parse import urlparse
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.server_monitor import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget, QVBoxLayout, QScrollArea, QGraphicsOpacityEffect
-from PyQt6.QtCore import Qt, QPoint, pyqtSignal, QThread, QTimer, QPropertyAnimation, QEasingCurve
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget, QVBoxLayout, QScrollArea, QGraphicsOpacityEffect
+from PySide6.QtCore import Qt, QPoint, Signal, QThread, QTimer, QPropertyAnimation, QEasingCurve
 from core.utils.utilities import PopupWidget
 from core.utils.widgets.animation_manager import AnimationManager
 from win11toast import toast
@@ -27,8 +27,8 @@ class ServerCheckWorker(QThread):
             cls._instance = cls()
         return cls._instance
      
-    status_updated = pyqtSignal(list)
-    progress_updated = pyqtSignal(str, int, int)
+    status_updated = Signal(list)
+    progress_updated = Signal(str, int, int)
 
     def __init__(self, parent=None):
         if ServerCheckWorker._instance is not None:

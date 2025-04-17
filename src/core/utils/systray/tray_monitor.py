@@ -16,8 +16,8 @@ from uuid import UUID
 from PIL import Image
 from PIL.ImageFilter import SHARPEN
 from PIL.ImageQt import ImageQt
-from PyQt6.QtCore import QObject, pyqtSignal
-from PyQt6.QtGui import QPixmap
+from PySide6.QtCore import QObject, Signal
+from PySide6.QtGui import QPixmap
 from win32con import (
     HWND_BROADCAST,
     HWND_TOPMOST,
@@ -117,8 +117,8 @@ class IconData:
 class TrayMonitor(QObject):
     """Main class to handle systray message interception and forwarding"""
 
-    icon_modified = pyqtSignal(IconData)
-    icon_deleted = pyqtSignal(IconData)
+    icon_modified = Signal(IconData)
+    icon_deleted = Signal(IconData)
 
     def __init__(self, parent: QObject | None = None):
         super().__init__(parent)

@@ -1,9 +1,9 @@
 import logging
 import re
 import subprocess
-from PyQt6.QtWidgets import QWidget, QHBoxLayout, QFrame
-from PyQt6.QtGui import QMouseEvent
-from PyQt6.QtCore import QTimer, QThread, Qt
+from PySide6.QtWidgets import QWidget, QHBoxLayout, QFrame
+from PySide6.QtGui import QMouseEvent
+from PySide6.QtCore import QTimer, QThread, Qt
 from typing import Union
 from core.utils.win32.system_function import function_map
 

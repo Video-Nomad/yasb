@@ -5,14 +5,14 @@ import subprocess
 import threading
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.update_check import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget
-from PyQt6.QtCore import Qt, QThread, pyqtSignal
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget
+from PySide6.QtCore import Qt, QThread, Signal
 import win32com.client
 from settings import DEBUG
 
 class UpdateWorker(QThread):
-    windows_update_signal = pyqtSignal(dict)
-    winget_update_signal = pyqtSignal(dict)
+    windows_update_signal = Signal(dict)
+    winget_update_signal = Signal(dict)
     
     def __init__(self, update_type, exclude_list=None, parent=None):
         super().__init__(parent)

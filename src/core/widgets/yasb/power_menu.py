@@ -1,7 +1,7 @@
-from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QHBoxLayout, QLabel, QStyleOption, QStyle
-from PyQt6 import QtCore, QtGui
-from PyQt6.QtGui import QCursor
-from PyQt6.QtCore import Qt, QPropertyAnimation, pyqtSignal
+from PySide6.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QHBoxLayout, QLabel, QStyleOption, QStyle
+from PySide6 import QtCore, QtGui
+from PySide6.QtGui import QCursor
+from PySide6.QtCore import Qt, QPropertyAnimation, Signal
 from core.utils.win32.blurWindow import Blur
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.power_menu import VALIDATION_SCHEMA
@@ -17,7 +17,7 @@ class BaseStyledWidget(QWidget):
         self.setStyleSheet(stylesheet)
             
 class ClickableLabel(QLabel):
-    clicked = pyqtSignal()
+    clicked = Signal()
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

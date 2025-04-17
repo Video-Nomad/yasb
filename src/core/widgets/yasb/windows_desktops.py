@@ -1,7 +1,7 @@
 import logging
-from PyQt6.QtWidgets import QPushButton, QWidget, QHBoxLayout, QInputDialog, QFileDialog
-from PyQt6.QtCore import pyqtSignal, Qt, QTimer
-from PyQt6.QtGui import QCursor
+from PySide6.QtWidgets import QPushButton, QWidget, QHBoxLayout, QInputDialog, QFileDialog
+from PySide6.QtCore import Signal, Qt, QTimer
+from PySide6.QtGui import QCursor
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.windows_desktops import VALIDATION_SCHEMA
 from core.event_service import EventService
@@ -167,8 +167,8 @@ class WorkspaceButton(QPushButton):
             logging.exception("Failed to create new desktop", exc_info=e)
             
 class WorkspaceWidget(BaseWidget):
-    d_signal_virtual_desktop_changed = pyqtSignal(dict)
-    d_signal_virtual_desktop_update  = pyqtSignal(dict)
+    d_signal_virtual_desktop_changed = Signal(dict)
+    d_signal_virtual_desktop_update  = Signal(dict)
     validation_schema = VALIDATION_SCHEMA
     def __init__(
             self,

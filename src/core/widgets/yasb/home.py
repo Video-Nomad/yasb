@@ -3,8 +3,8 @@ import re
 import subprocess
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.home import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget, QVBoxLayout, QFrame
-from PyQt6.QtCore import Qt, QPoint
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget, QVBoxLayout, QFrame
+from PySide6.QtCore import Qt, QPoint
 import os
 from core.utils.widgets.power import PowerOperations
 from core.utils.utilities import PopupWidget

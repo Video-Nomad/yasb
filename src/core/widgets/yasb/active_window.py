@@ -3,9 +3,9 @@ from settings import APP_BAR_TITLE, DEBUG
 from core.utils.win32.windows import WinEvent
 from core.widgets.base import BaseWidget
 from core.event_service import EventService
-from PyQt6.QtCore import pyqtSignal, QTimer, Qt, QElapsedTimer
-from PyQt6.QtGui import QPixmap, QImage
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget
+from PySide6.QtCore import Signal, QTimer, Qt, QElapsedTimer
+from PySide6.QtGui import QPixmap, QImage
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget
 from core.validation.widgets.yasb.active_window import VALIDATION_SCHEMA
 from core.utils.win32.utilities import get_hwnd_info
 from PIL import Image
@@ -36,9 +36,9 @@ except ImportError:
 
 
 class ActiveWindowWidget(BaseWidget):
-    foreground_change = pyqtSignal(int, WinEvent)
-    window_name_change = pyqtSignal(int, WinEvent)
-    focus_change_workspaces = pyqtSignal(str)
+    foreground_change = Signal(int, object)
+    window_name_change = Signal(int, object)
+    focus_change_workspaces = Signal(str)
     validation_schema = VALIDATION_SCHEMA
     event_listener = SystemEventListener
 

@@ -7,9 +7,9 @@ from PIL import Image
 import win32gui
 import win32con
 
-from PyQt6.QtCore import Qt, pyqtSignal, QTimer
-from PyQt6.QtGui import QPixmap, QImage, QCursor
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget, QGraphicsOpacityEffect, QApplication
+from PySide6.QtCore import Qt, Signal, QTimer
+from PySide6.QtGui import QPixmap, QImage, QCursor
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget, QGraphicsOpacityEffect, QApplication
 
 from settings import DEBUG
 from core.widgets.base import BaseWidget
@@ -49,7 +49,7 @@ EXCLUDED_CLASSES = {
 
 class TaskbarWidget(BaseWidget):
     validation_schema = VALIDATION_SCHEMA
-    update_event = pyqtSignal(int, WinEvent)
+    update_event = Signal(int, WinEvent)
     event_listener = SystemEventListener
 
     def __init__(

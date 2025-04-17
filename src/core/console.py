@@ -2,14 +2,14 @@ import os
 from os import path
 from pathlib import Path
 import re
-from PyQt6.QtWidgets import QVBoxLayout, QTextEdit, QDialog
-from PyQt6.QtGui import QIcon
-from PyQt6.QtCore import QThread, pyqtSignal, Qt
+from PySide6.QtWidgets import QVBoxLayout, QTextEdit, QDialog
+from PySide6.QtGui import QIcon
+from PySide6.QtCore import QThread, Signal, Qt
 from settings import DEFAULT_CONFIG_DIRECTORY, DEFAULT_LOG_FILENAME
 from datetime import datetime
 
 class LogTailer(QThread):
-    new_line = pyqtSignal(str)
+    new_line = Signal(str)
     
     def __init__(self, log_file_path):
         super().__init__()

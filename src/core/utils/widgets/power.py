@@ -1,7 +1,7 @@
 import subprocess
 import win32api
 import win32security
-from PyQt6.QtCore import QCoreApplication
+from PySide6.QtCore import QCoreApplication
 import ctypes
 
 class PowerOperations:

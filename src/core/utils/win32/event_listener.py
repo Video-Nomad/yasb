@@ -2,9 +2,8 @@ import ctypes
 import time
 import logging
 import typing
-from PyQt6.QtCore import QThread, QAbstractNativeEventFilter
-from PyQt6.QtWidgets import QWidget, QApplication
-import PyQt6.sip
+from PySide6.QtCore import QThread, QAbstractNativeEventFilter
+from PySide6.QtWidgets import QWidget, QApplication
 from win32gui import GetForegroundWindow
 from core.utils.win32.windows import WinEventProcType, WinEvent, user32, ole32, msg
 from core.event_service import EventService

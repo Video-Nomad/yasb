@@ -2,8 +2,8 @@ import re
 import pytz
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.clock import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QVBoxLayout, QWidget, QCalendarWidget, QSizePolicy, QTableView
-from PyQt6.QtCore import Qt, QDate, QPoint, QLocale
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QVBoxLayout, QWidget, QCalendarWidget, QSizePolicy, QTableView
+from PySide6.QtCore import Qt, QDate, QPoint, QLocale
 from datetime import datetime
 from tzlocal import get_localzone_name
 from itertools import cycle

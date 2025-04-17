@@ -3,9 +3,9 @@ import ctypes
 import logging
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.microphone import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget
-from PyQt6.QtCore import Qt, pyqtSignal
-from PyQt6.QtGui import QWheelEvent
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtGui import QWheelEvent
 from comtypes import CLSCTX_ALL, CoInitialize, CoUninitialize, COMObject
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume, IAudioEndpointVolumeCallback
 from pycaw.callbacks import MMNotificationClient
@@ -33,7 +33,7 @@ class AudioEndpointVolumeCallback(COMObject):
 
 class MicrophoneWidget(BaseWidget):
     validation_schema = VALIDATION_SCHEMA
-    update_label_signal = pyqtSignal()
+    update_label_signal = Signal()
 
     def __init__(
         self,

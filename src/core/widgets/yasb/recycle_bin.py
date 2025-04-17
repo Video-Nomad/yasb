@@ -1,7 +1,7 @@
 import re
 
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget
-from PyQt6.QtCore import Qt
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget
+from PySide6.QtCore import Qt
 
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.recycle_bin import VALIDATION_SCHEMA

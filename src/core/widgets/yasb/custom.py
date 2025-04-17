@@ -4,14 +4,14 @@ import json
 import threading
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.custom import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget
-from PyQt6.QtCore import Qt, pyqtSignal, QObject
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget
+from PySide6.QtCore import Qt, Signal, QObject
 from core.utils.win32.system_function import function_map
 from core.utils.widgets.animation_manager import AnimationManager
 
 class CustomWorker(QObject):
-    finished = pyqtSignal()
-    data_ready = pyqtSignal(object)
+    finished = Signal()
+    data_ready = Signal(object)
 
     def __init__(self, cmd, use_shell, encoding, return_type, hide_empty):
         super().__init__()

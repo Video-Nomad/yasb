@@ -3,8 +3,8 @@ This is very experimental and may not work as expected. It uses ctypes to intera
 """
 import re
 import ctypes
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget
-from PyQt6.QtCore import Qt, QThread, pyqtSignal, QTimer
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget
+from PySide6.QtCore import Qt, QThread, Signal, QTimer
 from ctypes import wintypes
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.bluetooth import VALIDATION_SCHEMA
@@ -77,7 +77,7 @@ class BLUETOOTH_FIND_RADIO_PARAMS(ctypes.Structure):
     ]
 
 class BluetoothThread(QThread):
-    status_signal = pyqtSignal(str)
+    status_signal = Signal(str)
 
     def __init__(self, bt_api):
         super().__init__()

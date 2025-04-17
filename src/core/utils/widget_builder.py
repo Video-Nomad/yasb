@@ -1,7 +1,7 @@
 import yaml
 import logging
-from PyQt6.QtWidgets import QWidget
-from PyQt6.QtCore import QObject
+from PySide6.QtWidgets import QWidget
+from PySide6.QtCore import QObject
 from typing import Optional
 from cerberus import Validator
 from importlib import import_module

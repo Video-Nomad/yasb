@@ -4,13 +4,13 @@ import re
 import win32api
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.disk import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget, QProgressBar, QVBoxLayout
-from PyQt6.QtCore import Qt, QPoint, pyqtSignal
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget, QProgressBar, QVBoxLayout
+from PySide6.QtCore import Qt, QPoint, Signal
 from core.utils.utilities import PopupWidget
 from core.utils.widgets.animation_manager import AnimationManager
 
 class ClickableDiskWidget(QWidget):
-    clicked = pyqtSignal()
+    clicked = Signal()
 
     def __init__(self, label, parent=None):
         super().__init__(parent)

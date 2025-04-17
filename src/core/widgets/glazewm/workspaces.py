@@ -3,12 +3,12 @@ import re
 from enum import StrEnum, auto
 from typing import Any, override
 
-from PyQt6.QtCore import (
+from PySide6.QtCore import (
     Qt,
-    pyqtSlot,  # type: ignore
+    Slot,  # type: ignore
 )
-from PyQt6.QtGui import QCursor, QShowEvent
-from PyQt6.QtWidgets import QHBoxLayout, QLabel, QPushButton, QWidget
+from PySide6.QtGui import QCursor, QShowEvent
+from PySide6.QtWidgets import QHBoxLayout, QLabel, QPushButton, QWidget
 
 from core.utils.glazewm.client import GlazewmClient, Monitor
 from core.utils.win32.utilities import get_monitor_hwnd
@@ -64,7 +64,7 @@ class GlazewmWorkspaceButton(QPushButton):
         self.setProperty("class", f"ws-btn {self.status.value}")
         self.setStyleSheet("")
 
-    @pyqtSlot()
+    @Slot()
     def _activate_workspace(self):
         self.glazewm_client.activate_workspace(self.workspace_name)
 
@@ -146,21 +146,21 @@ class GlazewmWorkspacesWidget(BaseWidget):
                 "query monitors",
             ],
         )
-        self.glazewm_client.glazewm_connection_status.connect(self._update_connection_status)  # type: ignore
-        self.glazewm_client.workspaces_data_processed.connect(self._update_workspaces)  # type: ignore
+        self.glazewm_client.glazewm_connection_status.connect(self._update_connection_status)
+        self.glazewm_client.workspaces_data_processed.connect(self._update_workspaces)
 
     @override
     def showEvent(self, a0: QShowEvent | None):
         super().showEvent(a0)
         self.monitor_handle = get_monitor_hwnd(int(QWidget.winId(self)))
-        self.glazewm_client.connect()
+        self.glazewm_client.connect_to_server()
 
-    @pyqtSlot(bool)
+    @Slot(bool)
     def _update_connection_status(self, status: bool):
         self.workspace_container.setVisible(status)
         self.offline_text.setVisible(not status if not self.hide_if_offline else False)
 
-    @pyqtSlot(list)
+    @Slot(list)
     def _update_workspaces(self, message: list[Monitor]):
         # Find the target monitor
         current_mon = next((m for m in message if m.hwnd == self.monitor_handle), None)

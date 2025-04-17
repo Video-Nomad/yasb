@@ -1,9 +1,9 @@
 import logging
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.obs import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget, QGraphicsOpacityEffect
-from PyQt6.QtGui import QCursor
-from PyQt6.QtCore import Qt, QTimer, QMetaObject, Q_ARG, QThread, pyqtSignal
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget, QGraphicsOpacityEffect
+from PySide6.QtGui import QCursor
+from PySide6.QtCore import Qt, QTimer, QMetaObject, Q_ARG, QThread, Signal
 from obswebsocket import obsws, requests, events
 from settings import DEBUG
 
@@ -17,8 +17,8 @@ else:
 
 
 class ObsWorker(QThread):
-    connection_signal = pyqtSignal(bool)
-    state_signal = pyqtSignal(dict)
+    connection_signal = Signal(bool)
+    state_signal = Signal(dict)
     
     def __init__(self, connection_params, parent=None):
         super().__init__(parent)

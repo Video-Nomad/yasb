@@ -1,7 +1,7 @@
 import logging
-from PyQt6.QtWidgets import QPushButton, QWidget, QHBoxLayout, QLabel
-from PyQt6.QtCore import Qt, pyqtSignal, QTimer
-from PyQt6.QtGui import QCursor
+from PySide6.QtWidgets import QPushButton, QWidget, QHBoxLayout, QLabel
+from PySide6.QtCore import Qt, Signal, QTimer
+from PySide6.QtGui import QCursor
 from typing import Literal
 from contextlib import suppress
 from core.utils.win32.utilities import get_monitor_hwnd
@@ -105,9 +105,9 @@ class WorkspaceButton(QPushButton):
         
         
 class WorkspaceWidget(BaseWidget):
-    k_signal_connect = pyqtSignal(dict)
-    k_signal_update = pyqtSignal(dict, dict)
-    k_signal_disconnect = pyqtSignal()
+    k_signal_connect = Signal(dict)
+    k_signal_update = Signal(dict, dict)
+    k_signal_disconnect = Signal()
     validation_schema = VALIDATION_SCHEMA
     event_listener = KomorebiEventListener
 

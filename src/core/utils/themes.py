@@ -3,14 +3,14 @@ import shutil
 import subprocess
 import sys
 import requests
-from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
+from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                              QLabel, QScrollArea, QFrame, QHBoxLayout, QPushButton, QMessageBox, QDialog)
-from PyQt6.QtGui import QPixmap, QFont, QDesktopServices, QIcon
-from PyQt6.QtCore import Qt, QThread, pyqtSignal, QUrl, QTimer, QPropertyAnimation
-from PyQt6.QtWidgets import QGraphicsOpacityEffect, QSizePolicy
+from PySide6.QtGui import QPixmap, QFont, QDesktopServices, QIcon
+from PySide6.QtCore import Qt, QThread, Signal, QUrl, QTimer, QPropertyAnimation
+from PySide6.QtWidgets import QGraphicsOpacityEffect, QSizePolicy
 
 class ImageLoader(QThread):
-    finished = pyqtSignal(str, bytes)
+    finished = Signal(str, bytes)
 
     def __init__(self, theme_id, url):
         super().__init__()
@@ -26,8 +26,8 @@ class ImageLoader(QThread):
 
 
 class ThemeLoader(QThread):
-    finished = pyqtSignal(dict)
-    error = pyqtSignal(str)
+    finished = Signal(dict)
+    error = Signal(str)
 
     def run(self):
         try:

@@ -1,5 +1,5 @@
-from PyQt6.QtWidgets import QGraphicsOpacityEffect
-from PyQt6.QtCore import QTimer
+from PySide6.QtWidgets import QGraphicsOpacityEffect
+from PySide6.QtCore import QTimer
 import logging
 class AnimationManager:
     _instances = {}

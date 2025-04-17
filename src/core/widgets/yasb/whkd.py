@@ -1,12 +1,12 @@
 import os
 import re
 import logging
-from PyQt6.QtWidgets import (
+from PySide6.QtWidgets import (
     QLabel, QHBoxLayout, QWidget, QApplication, QSizePolicy,
     QVBoxLayout, QScrollArea, QPushButton, QLineEdit, QDialog
 )
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QIcon
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QIcon
 from core.utils.alert_dialog import raise_info_alert
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.whkd import VALIDATION_SCHEMA

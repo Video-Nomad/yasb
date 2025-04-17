@@ -10,9 +10,9 @@ from ctypes import c_int as enum
 from ctypes.wintypes import BOOL, INT, LPCWSTR, WORD
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.volume import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget, QVBoxLayout, QSlider, QPushButton
-from PyQt6.QtCore import Qt, pyqtSignal, QPoint
-from PyQt6.QtGui import QWheelEvent
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget, QVBoxLayout, QSlider, QPushButton
+from PySide6.QtCore import Qt, Signal, QPoint
+from PySide6.QtGui import QWheelEvent
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume, IAudioEndpointVolumeCallback, EDataFlow, IMMDeviceEnumerator
 from pycaw.callbacks import MMNotificationClient
 from core.utils.win32.system_function import KEYEVENTF_KEYUP, VK_VOLUME_UP, VK_VOLUME_DOWN
@@ -194,7 +194,7 @@ class AudioEndpointVolumeCallback(COMObject):
 
 class VolumeWidget(BaseWidget):
     validation_schema = VALIDATION_SCHEMA
-    update_label_signal = pyqtSignal()
+    update_label_signal = Signal()
 
     def __init__(
         self,

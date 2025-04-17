@@ -4,13 +4,13 @@ import re
 import json
 import datetime
 from typing import List, Dict
-from PyQt6.QtWidgets import (
+from PySide6.QtWidgets import (
     QWidget, QLabel, QHBoxLayout, QVBoxLayout,
     QPushButton, QScrollArea, QTextEdit,
     QSpacerItem, QSizePolicy
 )
-from PyQt6.QtCore import Qt, QPoint
-from PyQt6.QtGui import QCursor
+from PySide6.QtCore import Qt, QPoint
+from PySide6.QtGui import QCursor
 
 from core.widgets.base import BaseWidget
 from core.utils.utilities import PopupWidget

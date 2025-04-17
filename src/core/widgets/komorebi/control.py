@@ -9,8 +9,8 @@ from core.utils.widgets.animation_manager import AnimationManager
 from core.event_service import EventService
 from core.event_enums import KomorebiEvent
 from core.utils.komorebi.client import KomorebiClient
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget, QVBoxLayout, QSizePolicy
-from PyQt6.QtCore import Qt, QPoint, pyqtSignal, QThread, QEvent
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget, QVBoxLayout, QSizePolicy
+from PySide6.QtCore import Qt, QPoint, Signal, QThread, QEvent
 
 
 class ExtPopupWidget(PopupWidget):
@@ -26,8 +26,8 @@ class ExtPopupWidget(PopupWidget):
 class KomorebiControlWidget(BaseWidget):
     validation_schema = VALIDATION_SCHEMA
 
-    k_signal_connect = pyqtSignal(dict)
-    k_signal_disconnect = pyqtSignal()
+    k_signal_connect = Signal(dict)
+    k_signal_disconnect = Signal()
 
     def __init__(
             self,
@@ -352,7 +352,7 @@ class KomorebiControlWidget(BaseWidget):
 
 
 class VersionCheckThread(QThread):
-    version_result = pyqtSignal(str)
+    version_result = Signal(str)
 
     def __init__(self, komorebic_client):
         super().__init__()

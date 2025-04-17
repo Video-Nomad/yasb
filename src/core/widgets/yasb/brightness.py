@@ -4,9 +4,9 @@ import logging
 from settings import DEBUG
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.brightness import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget, QSlider, QVBoxLayout
-from PyQt6.QtCore import Qt, QTimer, QPoint
-from PyQt6.QtGui import QWheelEvent, QCursor
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget, QSlider, QVBoxLayout
+from PySide6.QtCore import Qt, QTimer, QPoint
+from PySide6.QtGui import QWheelEvent, QCursor
 from core.utils.win32.utilities import get_monitor_info
 import screen_brightness_control as sbc
 from datetime import datetime

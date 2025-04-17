@@ -3,8 +3,8 @@ import psutil
 from collections import deque
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.cpu import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget
-from PyQt6.QtCore import Qt
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget
+from PySide6.QtCore import Qt
 from core.utils.widgets.animation_manager import AnimationManager
 class CpuWidget(BaseWidget):
     validation_schema = VALIDATION_SCHEMA

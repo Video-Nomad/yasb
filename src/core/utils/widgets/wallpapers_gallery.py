@@ -1,8 +1,8 @@
 import os
 import re
-from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QScrollArea, QGraphicsOpacityEffect, QSizePolicy
-from PyQt6.QtGui import QPixmap, QKeySequence, QShortcut, QPainter, QPainterPath, QImageReader
-from PyQt6.QtCore import Qt, QTimer, QPropertyAnimation, pyqtProperty, QRectF, QSize, QRunnable, QThreadPool, pyqtSignal, QObject, QRect
+from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QScrollArea, QGraphicsOpacityEffect, QSizePolicy
+from PySide6.QtGui import QPixmap, QKeySequence, QShortcut, QPainter, QPainterPath, QImageReader
+from PySide6.QtCore import Qt, QTimer, QPropertyAnimation, pyqtProperty, QRectF, QSize, QRunnable, QThreadPool, Signal, QObject, QRect
 from core.utils.win32.blurWindow import Blur
 from core.event_service import EventService
 from core.config import get_stylesheet
@@ -81,7 +81,7 @@ class HoverLabel(QLabel, BaseStyledWidget):
 
 
 class ImageSignals(QObject):
-    loaded = pyqtSignal(str, QPixmap, int)
+    loaded = Signal(str, QPixmap, int)
 
 
 class ImageLoader(QRunnable):

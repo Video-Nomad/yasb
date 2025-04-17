@@ -2,9 +2,9 @@ import os
 import time
 import logging
 import re
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget, QVBoxLayout, QPushButton
-from PyQt6.QtCore import Qt, QTimer, QPoint, QRectF, pyqtProperty, QPropertyAnimation
-from PyQt6.QtGui import QCursor, QPainter, QPen, QColor
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget, QVBoxLayout, QPushButton
+from PySide6.QtCore import Qt, QTimer, QPoint, QRectF, pyqtProperty, QPropertyAnimation
+from PySide6.QtGui import QCursor, QPainter, QPen, QColor
 from core.utils.utilities import PopupWidget
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.pomodoro import VALIDATION_SCHEMA

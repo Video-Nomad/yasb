@@ -8,9 +8,9 @@ import shutil
 import threading
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.cava import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QHBoxLayout, QWidget, QLabel, QApplication
-from PyQt6.QtGui import QLinearGradient, QPainter, QColor
-from PyQt6.QtCore import QTimer, pyqtSignal
+from PySide6.QtWidgets import QHBoxLayout, QWidget, QLabel, QApplication
+from PySide6.QtGui import QLinearGradient, QPainter, QColor
+from PySide6.QtCore import QTimer, Signal
 import atexit
 
 class CavaBar(QWidget):
@@ -44,7 +44,7 @@ class CavaBar(QWidget):
 
 class CavaWidget(BaseWidget):
     validation_schema = VALIDATION_SCHEMA
-    samplesUpdated = pyqtSignal(list)
+    samplesUpdated = Signal(list)
 
     def __init__(
             self,

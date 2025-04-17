@@ -1,9 +1,12 @@
+import logging
 import platform
 import re
-from PyQt6.QtWidgets import QApplication, QFrame, QMenu
-from PyQt6.QtCore import QEvent
-from PyQt6.QtGui import QScreen
+from PySide6.QtWidgets import QApplication, QFrame, QMenu
+from PySide6.QtCore import QEvent, QObject
+from PySide6.QtGui import QScreen
 from core.utils.win32.blurWindow import Blur
+
+logger = logging.getLogger("utils")
 
 def is_windows_10() -> bool:
     version = platform.version()
@@ -55,6 +58,8 @@ class PopupWidget(QFrame):
         super().showEvent(event)
 
     def eventFilter(self, obj, event):
+        if not isinstance(obj, QObject):
+            return True
         if event.type() == QEvent.Type.MouseButtonPress:
             global_pos = event.globalPosition().toPoint()
             if not self.geometry().contains(global_pos):

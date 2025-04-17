@@ -6,8 +6,8 @@ from settings import DEBUG
 from humanize import naturalsize
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.traffic import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QLabel,QHBoxLayout,QWidget
-from PyQt6.QtCore import Qt, QTimer, pyqtSignal, QObject
+from PySide6.QtWidgets import QLabel,QHBoxLayout,QWidget
+from PySide6.QtCore import Qt, QTimer, Signal, QObject
 from core.utils.widgets.animation_manager import AnimationManager
 
 class InternetChecker(QObject):
@@ -20,7 +20,7 @@ class InternetChecker(QObject):
     If the primary host is not reachable, the secondary host will be checked, if the secondary host is not reachable, the function will return False which means that the internet is not connected.
     """
     
-    connection_changed = pyqtSignal(bool) 
+    connection_changed = Signal(bool) 
 
     def __init__(self, parent=None, check_interval=10000):
         super().__init__(parent)

@@ -1,8 +1,8 @@
 import logging
 from settings import APP_BAR_TITLE
-from PyQt6.QtWidgets import QWidget, QHBoxLayout, QGridLayout, QFrame
-from PyQt6.QtGui import QScreen
-from PyQt6.QtCore import Qt, QRect, QEvent, QPropertyAnimation, QParallelAnimationGroup, QEasingCurve, QTimer, QSize
+from PySide6.QtWidgets import QWidget, QHBoxLayout, QGridLayout, QFrame
+from PySide6.QtGui import QScreen
+from PySide6.QtCore import Qt, QRect, QEvent, QPropertyAnimation, QParallelAnimationGroup, QEasingCurve, QTimer, QSize
 from core.utils.utilities import is_valid_percentage_str, percent_to_float
 from core.utils.win32.utilities import get_monitor_hwnd
 from core.validation.bar import BAR_DEFAULTS

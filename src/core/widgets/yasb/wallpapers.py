@@ -8,9 +8,9 @@ import pythoncom
 import pywintypes
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.wallpapers import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget, QGraphicsOpacityEffect
-from PyQt6.QtCore import Qt, pyqtSignal
-from PyQt6.QtGui import QCursor
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget, QGraphicsOpacityEffect
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtGui import QCursor
 from typing import List
 import win32gui
 from win32comext.shell import shell, shellcon
@@ -22,7 +22,7 @@ from core.utils.alert_dialog import raise_info_alert
 from core.utils.widgets.animation_manager import AnimationManager
 
 class WallpapersWidget(BaseWidget):
-    set_wallpaper_signal = pyqtSignal(str) 
+    set_wallpaper_signal = Signal(str) 
     
     user32 = ctypes.windll.user32
     validation_schema = VALIDATION_SCHEMA

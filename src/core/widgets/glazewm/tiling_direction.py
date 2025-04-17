@@ -1,12 +1,12 @@
 import logging
 from typing import Any
 
-from PyQt6.QtCore import (
+from PySide6.QtCore import (
     Qt,
-    pyqtSlot,  # type: ignore
+    Slot,  # type: ignore
 )
-from PyQt6.QtGui import QCursor
-from PyQt6.QtWidgets import QHBoxLayout, QPushButton
+from PySide6.QtGui import QCursor
+from PySide6.QtWidgets import QHBoxLayout, QPushButton
 
 from core.utils.glazewm.client import GlazewmClient, TilingDirection
 from core.validation.widgets.glazewm.tiling_direction import VALIDATION_SCHEMA
@@ -43,7 +43,7 @@ class GlazewmTilingDirectionWidget(BaseWidget):
         self.tiling_direction_button.setProperty("class", "btn")
         self.tiling_direction_button.setVisible(False)
         self.tiling_direction_button.setLayout(self.workspace_container_layout)
-        self.tiling_direction_button.clicked.connect(self.toggle_tiling_direction)  # type: ignore
+        self.tiling_direction_button.clicked.connect(self.toggle_tiling_direction)
 
         self.widget_layout.addWidget(self.tiling_direction_button)
 
@@ -56,19 +56,20 @@ class GlazewmTilingDirectionWidget(BaseWidget):
                 "query tiling-direction",
             ],
         )
-        self.glazewm_client.glazewm_connection_status.connect(self._update_connection_status)  # type: ignore
-        self.glazewm_client.tiling_direction_processed.connect(self._update_tiling_direction)  # type: ignore
-        self.glazewm_client.connect()
+        self.glazewm_client.glazewm_connection_status.connect(self._update_connection_status)
+        self.glazewm_client.tiling_direction_processed.connect(self._update_tiling_direction)
 
-    @pyqtSlot()
+        self.glazewm_client.connect_to_server()
+
+    @Slot()
     def toggle_tiling_direction(self):
         self.glazewm_client.toggle_tiling_direction()
 
-    @pyqtSlot(bool)
+    @Slot(bool)
     def _update_connection_status(self, status: bool):
         self.tiling_direction_button.setVisible(status)
 
-    @pyqtSlot(TilingDirection)
+    @Slot(TilingDirection)
     def _update_tiling_direction(self, direction: TilingDirection):
         self.current_tiling_direction = direction
         if direction == TilingDirection.HORIZONTAL:

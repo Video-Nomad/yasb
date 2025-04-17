@@ -1,6 +1,6 @@
 import ctypes
 from ctypes import wintypes, Structure, POINTER, sizeof, windll, c_ulong
-from PyQt6.QtGui import QScreen
+from PySide6.QtGui import QScreen
 import win32con
 import logging
 import settings

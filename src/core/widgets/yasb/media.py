@@ -4,24 +4,24 @@ from typing import Any, Optional
 from PIL import Image, ImageChops
 from PIL.ImageDraw import ImageDraw
 from PIL.ImageQt import QPixmap
-from PyQt6 import QtCore
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QWheelEvent
+from PySide6 import QtCore
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QWheelEvent
 from PIL.ImageQt import ImageQt
 from winsdk.windows.media.control import GlobalSystemMediaTransportControlsSessionPlaybackInfo
 
 from core.utils.win32.media import WindowsMedia
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.media import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QLabel, QGridLayout, QHBoxLayout, QWidget, QGraphicsDropShadowEffect
+from PySide6.QtWidgets import QLabel, QGridLayout, QHBoxLayout, QWidget, QGraphicsDropShadowEffect
 from core.utils.widgets.animation_manager import AnimationManager
 
 class MediaWidget(BaseWidget):
     validation_schema = VALIDATION_SCHEMA
 
-    _playback_info_signal = QtCore.pyqtSignal(GlobalSystemMediaTransportControlsSessionPlaybackInfo)
-    _media_info_signal = QtCore.pyqtSignal(object)
-    _session_status_signal = QtCore.pyqtSignal(bool)
+    _playback_info_signal = QtCore.Signal(GlobalSystemMediaTransportControlsSessionPlaybackInfo)
+    _media_info_signal = QtCore.Signal(object)
+    _session_status_signal = QtCore.Signal(bool)
 
     def __init__(
             self,
@@ -160,7 +160,7 @@ class MediaWidget(BaseWidget):
             AnimationManager.animate(self, self._animation['type'], self._animation['duration'])
         WindowsMedia().play_pause()
 
-    @QtCore.pyqtSlot(bool)
+    @QtCore.Slot(bool)
     def _on_session_status_changed(self, has_session: bool):
         active_label = self._label_alt if self._show_alt_label else self._label
 
@@ -184,7 +184,7 @@ class MediaWidget(BaseWidget):
             if self._hide_empty:
                 self._widget_frame.hide()
 
-    @QtCore.pyqtSlot(GlobalSystemMediaTransportControlsSessionPlaybackInfo)
+    @QtCore.Slot(GlobalSystemMediaTransportControlsSessionPlaybackInfo)
     def _on_playback_info_changed(self, playback_info: GlobalSystemMediaTransportControlsSessionPlaybackInfo):
         # Set play-pause state icon
         if not self._controls_hide:
@@ -210,7 +210,7 @@ class MediaWidget(BaseWidget):
             self._play_label.setStyleSheet('')
             self._next_label.setStyleSheet('')
 
-    @QtCore.pyqtSlot(object) # None or dict
+    @QtCore.Slot(object) # None or dict
     def _on_media_properties_changed(self, media_info: Optional[dict[str, Any]]):
         active_label = self._label_alt if self._show_alt_label else self._label
         active_label_content = self._label_alt_content if self._show_alt_label else self._label_content

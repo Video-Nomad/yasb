@@ -5,9 +5,9 @@ from ctypes import byref
 from dataclasses import dataclass
 from typing import override
 
-from PyQt6.QtCore import QMimeData, QPoint, QSize, Qt, pyqtSignal
-from PyQt6.QtGui import QDrag, QDragEnterEvent, QDragLeaveEvent, QDragMoveEvent, QDropEvent, QIcon, QMouseEvent
-from PyQt6.QtWidgets import (
+from PySide6.QtCore import QMimeData, QPoint, QSize, Qt, Signal
+from PySide6.QtGui import QDrag, QDragEnterEvent, QDragLeaveEvent, QDragMoveEvent, QDropEvent, QIcon, QMouseEvent
+from PySide6.QtWidgets import (
     QFrame,
     QHBoxLayout,
     QPushButton,
@@ -52,8 +52,8 @@ class IconState:
 
 
 class IconWidget(QPushButton):
-    pinned_changed = pyqtSignal(object)
-    icon_moved = pyqtSignal(object)
+    pinned_changed = Signal(object)
+    icon_moved = Signal(object)
     pin_modifier_key = Qt.KeyboardModifier.AltModifier
     icon_size = 16
 
@@ -191,8 +191,8 @@ class IconWidget(QPushButton):
 
 
 class DropWidget(QFrame):
-    drag_started = pyqtSignal()
-    drag_ended = pyqtSignal()
+    drag_started = Signal()
+    drag_ended = Signal()
 
     def __init__(self, parent: QWidget | None = None):
         super().__init__(parent)

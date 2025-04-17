@@ -1,9 +1,9 @@
 import os
 from core.widgets.base import BaseWidget
 from core.validation.widgets.yasb.applications import VALIDATION_SCHEMA
-from PyQt6.QtWidgets import QLabel, QHBoxLayout, QWidget
-from PyQt6.QtGui import QCursor, QPixmap
-from PyQt6.QtCore import Qt
+from PySide6.QtWidgets import QLabel, QHBoxLayout, QWidget
+from PySide6.QtGui import QCursor, QPixmap
+from PySide6.QtCore import Qt
 import subprocess
 import logging
 from core.utils.win32.system_function import function_map

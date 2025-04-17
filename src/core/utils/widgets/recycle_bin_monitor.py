@@ -7,7 +7,7 @@ import threading
 import ctypes
 from ctypes import wintypes
 
-from PyQt6.QtCore import QObject, pyqtSignal, QThread
+from PySide6.QtCore import QObject, Signal, QThread
 from settings import DEBUG
 
 # Windows API constants
@@ -23,7 +23,7 @@ class RecycleBinMonitor(QObject):
     """Utility class to monitor Recycle Bin status and changes"""
     
     # Signal that will be emitted when recycle bin status changes
-    bin_updated = pyqtSignal(dict)
+    bin_updated = Signal(dict)
     
     # Add these class variables
     _instance = None
@@ -310,7 +310,7 @@ class RecycleBinMonitor(QObject):
             monitor_threads.append(thread)
 
 class EmptyBinThread(QThread):
-    finished = pyqtSignal()
+    finished = Signal()
     
     def __init__(self, monitor):
         super().__init__()

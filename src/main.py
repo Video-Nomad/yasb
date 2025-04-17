@@ -6,7 +6,7 @@ from sys import argv, exit
 import contextlib
 
 import qasync
-from PyQt6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication
 from dotenv import load_dotenv
 
 import settings
