@@ -1,7 +1,7 @@
 import asyncio
 import logging
 from enum import IntFlag
-from winsdk.windows.ui.notifications import management
+from winrt.windows.ui.notifications import management
 from PyQt6.QtCore import QThread
 from core.event_service import EventService
 from settings import DEBUG

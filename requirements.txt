@@ -8,7 +8,6 @@ pywin32
 PyYAML
 tzlocal
 watchdog
-winsdk
 pycaw
 pillow==11.1
 qasync
@@ -16,4 +15,14 @@ obs-websocket-py
 pyvda
 win11toast
 python-dotenv
+winrt-runtime
+winrt-windows-foundation
+winrt-windows-foundation-collections
+winrt-windows-media
+winrt-windows-media-control
+winrt-windows-media-playback
+winrt-windows-networking-connectivity
+winrt-windows-storage-streams
+winrt-windows-ui-notifications
+winrt-windows-ui-notifications-management
 git+https://github.com/amnweb/screen_brightness_control.git
