@@ -26,7 +26,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.12'
+        python-version: '3.12.10'
 
     - name: Create virtual environment
       run: |
@@ -38,7 +38,7 @@ jobs:
         .\venv\Scripts\Activate
         python -m pip install --upgrade pip
         pip install --force --no-cache -r requirements.txt
-        pip install --force --no-cache --upgrade cx_Freeze==7.2.10
+        pip install --force --no-cache --upgrade cx_Freeze
       shell: pwsh
 
     - name: Build MSI
