@@ -457,12 +457,14 @@ class HourlyDataLineWidget(QFrame):
                     line_from = sample_rect.height() + 10
                 line_to = height - text_wind_icon_height - 10
 
-                fg_painter.drawLine(
-                    int(line_x),
-                    int(line_from),
-                    int(line_x),
-                    int(line_to),
-                )
+                # Only draw the line if it's not too short
+                if (line_to - line_from) > 5:
+                    fg_painter.drawLine(
+                        int(line_x),
+                        int(line_from),
+                        int(line_x),
+                        int(line_to),
+                    )
         fg_painter.end()
 
         self.needs_update = False
