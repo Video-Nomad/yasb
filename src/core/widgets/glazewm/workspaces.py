@@ -291,7 +291,7 @@ class GlazewmWorkspaceButtonWithIcons(QFrame):
 
         if self.parent_widget.workspace_app_icons["hide_floating"]:
             return [window for window in windows if not window.is_floating]
-        return windows
+        return [window for window in windows if not window.class_name == "#32770"]
 
     def _get_all_icons_in_workspace(self) -> list[QPixmap] | None:
         windows = self._get_all_windows_in_workspace()

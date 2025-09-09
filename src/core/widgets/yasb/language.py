@@ -126,7 +126,7 @@ class LanguageWidget(BaseWidget):
                 else:
                     # Update label with formatted content
                     formatted_text = part.format(lang=lang) if lang else part
-                    active_widgets[widget_index].setText(formatted_text)
+                    active_widgets[widget_index].setText(formatted_text.upper())
                 widget_index += 1
 
     def _on_settings_click(self, event):

@@ -61,7 +61,7 @@ Changelog = "https://github.com/amnweb/yasb/releases/latest"
 dev = [
     "pre-commit",
     "ruff",
-    "cx_freeze",
+    "cx_freeze @ git+https://github.com/marcelotduarte/cx_Freeze.git@develop",
     "pyqt6-stubs",
     "types-pillow",
 ]
