@@ -17,9 +17,9 @@ from pycaw.pycaw import (
     IMMDeviceEnumerator,
     ISimpleAudioVolume,
 )
-from PyQt6.QtCore import QEasingCurve, QPropertyAnimation, QRect, Qt, pyqtSignal
-from PyQt6.QtGui import QImage, QPixmap, QWheelEvent
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QSlider, QVBoxLayout, QWidget
+from PySide6.QtCore import QEasingCurve, QPropertyAnimation, QRect, Qt, Signal
+from PySide6.QtGui import QImage, QPixmap, QWheelEvent
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QSlider, QVBoxLayout, QWidget
 
 from core.utils.tooltip import CustomToolTip, set_tooltip
 from core.utils.utilities import PopupWidget, add_shadow, build_progress_widget, build_widget_label
@@ -199,7 +199,7 @@ class AudioEndpointVolumeCallback(COMObject):
 
 class VolumeWidget(BaseWidget):
     validation_schema = VALIDATION_SCHEMA
-    update_label_signal = pyqtSignal()
+    update_label_signal = Signal()
 
     def __init__(
         self,

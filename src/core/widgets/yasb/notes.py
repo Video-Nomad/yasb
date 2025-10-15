@@ -5,9 +5,9 @@ import os
 import re
 from typing import Dict, List
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QCursor
-from PyQt6.QtWidgets import (
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QCursor
+from PySide6.QtWidgets import (
     QFrame,
     QHBoxLayout,
     QLabel,
@@ -385,7 +385,7 @@ class NotesWidget(BaseWidget):
 
     def _copy_note(self, note):
         """Copy note content to clipboard"""
-        from PyQt6.QtWidgets import QApplication
+        from PySide6.QtWidgets import QApplication
 
         clipboard = QApplication.clipboard()
         clipboard.setText(note["title"])

@@ -1,6 +1,6 @@
 import re
 
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel
 
 from core.utils.tooltip import set_tooltip
 from core.utils.utilities import add_shadow, build_widget_label

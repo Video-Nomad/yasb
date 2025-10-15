@@ -6,9 +6,9 @@ import re
 import urllib.parse
 from functools import partial
 
-from PyQt6.QtCore import QMimeData, QPoint, Qt, QTimer
-from PyQt6.QtGui import QAction, QCursor, QDrag, QIcon
-from PyQt6.QtWidgets import (
+from PySide6.QtCore import QMimeData, QPoint, Qt, QTimer
+from PySide6.QtGui import QAction, QCursor, QDrag, QIcon
+from PySide6.QtWidgets import (
     QDialog,
     QFrame,
     QHBoxLayout,

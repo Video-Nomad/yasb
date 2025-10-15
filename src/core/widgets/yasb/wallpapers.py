@@ -10,9 +10,9 @@ from typing import List
 import pythoncom
 import pywintypes
 import win32gui
-from PyQt6.QtCore import Qt, pyqtSignal
-from PyQt6.QtGui import QCursor
-from PyQt6.QtWidgets import QFrame, QGraphicsOpacityEffect, QHBoxLayout, QLabel
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtGui import QCursor
+from PySide6.QtWidgets import QFrame, QGraphicsOpacityEffect, QHBoxLayout, QLabel
 from win32comext.shell import shell, shellcon
 
 from core.event_service import EventService
@@ -28,8 +28,8 @@ from settings import DEBUG
 
 
 class WallpapersWidget(BaseWidget):
-    set_wallpaper_signal = pyqtSignal(str)
-    handle_widget_cli = pyqtSignal(str, str)
+    set_wallpaper_signal = Signal(str)
+    handle_widget_cli = Signal(str, str)
 
     user32 = ctypes.windll.user32
     validation_schema = VALIDATION_SCHEMA

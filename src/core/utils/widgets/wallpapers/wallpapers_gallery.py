@@ -1,7 +1,8 @@
 import os
 import re
 
-from PyQt6.QtCore import (
+from PySide6.QtCore import (
+    Property,
     QObject,
     QPropertyAnimation,
     QRect,
@@ -11,11 +12,10 @@ from PyQt6.QtCore import (
     Qt,
     QThreadPool,
     QTimer,
-    pyqtProperty,
-    pyqtSignal,
+    Signal,
 )
-from PyQt6.QtGui import QImageReader, QKeySequence, QPainter, QPainterPath, QPixmap, QShortcut
-from PyQt6.QtWidgets import (
+from PySide6.QtGui import QImageReader, QKeySequence, QPainter, QPainterPath, QPixmap, QShortcut
+from PySide6.QtWidgets import (
     QApplication,
     QGraphicsOpacityEffect,
     QHBoxLayout,
@@ -77,7 +77,7 @@ class HoverLabel(QLabel, BaseStyledWidget):
     def set_focus(self, focused):
         self.focused = focused
 
-    @pyqtProperty(float)
+    @Property(float)
     def opacity(self):
         return self._opacity
 
@@ -111,7 +111,7 @@ class HoverLabel(QLabel, BaseStyledWidget):
 
 
 class ImageSignals(QObject):
-    loaded = pyqtSignal(str, QPixmap, int)
+    loaded = Signal(str, QPixmap, int)
 
 
 class ImageLoader(QRunnable):

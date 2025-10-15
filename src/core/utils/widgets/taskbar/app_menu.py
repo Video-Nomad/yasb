@@ -12,9 +12,9 @@ from pathlib import Path
 
 import pythoncom
 import win32gui
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QCursor
-from PyQt6.QtWidgets import QMenu
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QCursor
+from PySide6.QtWidgets import QMenu
 from win32comext.shell import shell, shellcon
 
 from core.utils.win32.utilities import qmenu_rounded_corners

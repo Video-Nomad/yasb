@@ -9,7 +9,7 @@ import webbrowser
 from functools import lru_cache
 from typing import Any, Dict, List
 
-from PyQt6.QtCore import (
+from PySide6.QtCore import (
     QAbstractAnimation,
     QEasingCurve,
     QEvent,
@@ -20,11 +20,22 @@ from PyQt6.QtCore import (
     Qt,
     QThread,
     QTimer,
-    pyqtSignal,
+    Signal,
 )
-from PyQt6.QtGui import QAction, QColor, QCursor, QDrag, QIcon, QKeySequence, QPainter, QPixmap, QShortcut, QWheelEvent
-from PyQt6.QtSvg import QSvgRenderer
-from PyQt6.QtWidgets import (
+from PySide6.QtGui import (
+    QAction,
+    QColor,
+    QCursor,
+    QDrag,
+    QIcon,
+    QKeySequence,
+    QPainter,
+    QPixmap,
+    QShortcut,
+    QWheelEvent,
+)
+from PySide6.QtSvg import QSvgRenderer
+from PySide6.QtWidgets import (
     QApplication,
     QCompleter,
     QDialog,
@@ -89,7 +100,7 @@ def load_and_scale_icon(icon_path: str, size: int, dpr=1.0) -> QPixmap:
 class IconLoadWorker(QThread):
     """Background thread for loading icons"""
 
-    icon_loaded = pyqtSignal(str, QPixmap)
+    icon_loaded = Signal(str, QPixmap)
 
     def __init__(self, icon_requests):
         super().__init__()
@@ -113,7 +124,7 @@ class IconLoadWorker(QThread):
 
 
 class UrlFetchWorker(QThread):
-    finished = pyqtSignal(object, object)  # icon_path, title
+    finished = Signal(object, object)  # icon_path, title
 
     def __init__(self, url, icons_dir):
         super().__init__()
@@ -489,7 +500,7 @@ class TransparentOverlay(QWidget):
     Transparent overlay window that captures clicks to hide the launchpad
     """
 
-    overlay_clicked = pyqtSignal()
+    overlay_clicked = Signal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -519,7 +530,7 @@ class TransparentOverlay(QWidget):
 
 class LaunchpadWidget(BaseWidget):
     validation_schema = VALIDATION_SCHEMA
-    handle_widget_cli = pyqtSignal(str, str)
+    handle_widget_cli = Signal(str, str)
 
     def __init__(
         self,

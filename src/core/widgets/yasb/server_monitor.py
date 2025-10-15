@@ -8,8 +8,8 @@ import urllib.request
 from datetime import datetime
 from urllib.parse import urlparse
 
-from PyQt6.QtCore import QEasingCurve, QPropertyAnimation, Qt, QThread, QTimer, pyqtSignal
-from PyQt6.QtWidgets import QFrame, QGraphicsOpacityEffect, QHBoxLayout, QLabel, QScrollArea, QVBoxLayout, QWidget
+from PySide6.QtCore import QEasingCurve, QPropertyAnimation, Qt, QThread, QTimer, Signal
+from PySide6.QtWidgets import QFrame, QGraphicsOpacityEffect, QHBoxLayout, QLabel, QScrollArea, QVBoxLayout, QWidget
 
 from core.utils.tooltip import set_tooltip
 from core.utils.utilities import PopupWidget, ToastNotifier, add_shadow, build_widget_label
@@ -29,8 +29,8 @@ class ServerCheckWorker(QThread):
             cls._instance = cls()
         return cls._instance
 
-    status_updated = pyqtSignal(list)
-    progress_updated = pyqtSignal(str, int, int)
+    status_updated = Signal(list)
+    progress_updated = Signal(str, int, int)
 
     def __init__(self, parent=None):
         if ServerCheckWorker._instance is not None:

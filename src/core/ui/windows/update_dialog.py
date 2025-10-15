@@ -14,9 +14,9 @@ from pathlib import Path
 from typing import Callable, Optional
 
 import certifi
-from PyQt6.QtCore import QEvent, Qt, QThread, QTimer, pyqtSignal
-from PyQt6.QtGui import QIcon, QTextCursor
-from PyQt6.QtWidgets import (
+from PySide6.QtCore import QEvent, Qt, QThread, QTimer, Signal
+from PySide6.QtGui import QIcon, QTextCursor
+from PySide6.QtWidgets import (
     QDialog,
     QHBoxLayout,
     QLabel,
@@ -85,9 +85,9 @@ def is_newer_version(latest: str, current: str) -> bool:
 
 
 class ReleaseFetcher(QThread):
-    update_available = pyqtSignal(object)
-    up_to_date = pyqtSignal(str)
-    error = pyqtSignal(str)
+    update_available = Signal(object)
+    up_to_date = Signal(str)
+    error = Signal(str)
 
     def __init__(self, current_version: str, parent=None):
         super().__init__(parent)
@@ -133,9 +133,9 @@ class ReleaseFetcher(QThread):
 
 
 class DownloadWorker(QThread):
-    progress = pyqtSignal(int)
-    finished = pyqtSignal(Path)
-    error = pyqtSignal(str)
+    progress = Signal(int)
+    finished = Signal(Path)
+    error = Signal(str)
 
     def __init__(self, download_url: str, output_path: Path, expected_size: Optional[int] = None, parent=None):
         super().__init__(parent)

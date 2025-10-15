@@ -1,9 +1,9 @@
 import logging
 from collections import deque
 
-from PyQt6.QtCore import Qt, pyqtSignal
-from PyQt6.QtGui import QCursor
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QSizePolicy, QVBoxLayout, QWidget
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtGui import QCursor
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QSizePolicy, QVBoxLayout, QWidget
 
 from core.event_enums import KomorebiEvent
 from core.event_service import EventService
@@ -45,10 +45,10 @@ layout_snake_case = {
 
 
 class ActiveLayoutWidget(BaseWidget):
-    k_signal_connect = pyqtSignal(dict)
-    k_signal_disconnect = pyqtSignal()
-    k_signal_layout_change = pyqtSignal(dict, dict)
-    k_signal_update = pyqtSignal(dict, dict)
+    k_signal_connect = Signal(dict)
+    k_signal_disconnect = Signal()
+    k_signal_layout_change = Signal(dict, dict)
+    k_signal_update = Signal(dict, dict)
 
     validation_schema = VALIDATION_SCHEMA
     event_listener = KomorebiEventListener

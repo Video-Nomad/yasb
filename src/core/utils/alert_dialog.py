@@ -2,9 +2,9 @@ import os
 import sys
 import traceback
 
-from PyQt6.QtCore import Qt, QTimer
-from PyQt6.QtGui import QIcon
-from PyQt6.QtWidgets import QMessageBox, QSizePolicy, QTextEdit
+from PySide6.QtCore import Qt, QTimer
+from PySide6.QtGui import QIcon
+from PySide6.QtWidgets import QMessageBox, QSizePolicy, QTextEdit
 
 from settings import SCRIPT_PATH
 

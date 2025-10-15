@@ -3,9 +3,9 @@ import uuid
 from contextlib import suppress
 from copy import deepcopy
 
-from PyQt6.QtCore import QObject, pyqtSignal, pyqtSlot
-from PyQt6.QtGui import QScreen
-from PyQt6.QtWidgets import QApplication
+from PySide6.QtCore import QObject, Signal, Slot
+from PySide6.QtGui import QScreen
+from PySide6.QtWidgets import QApplication
 
 from core.bar import Bar
 from core.config import get_config, get_stylesheet
@@ -17,8 +17,8 @@ from core.utils.widget_builder import WidgetBuilder
 
 
 class BarManager(QObject):
-    styles_modified = pyqtSignal()
-    config_modified = pyqtSignal()
+    styles_modified = Signal()
+    config_modified = Signal()
 
     def __init__(self, config: dict, stylesheet: str):
         super().__init__()
@@ -40,7 +40,7 @@ class BarManager(QObject):
         app.screenRemoved.connect(self.on_screens_update)
         app.aboutToQuit.connect(self.stop_listener_threads)
 
-    @pyqtSlot()
+    @Slot()
     def on_styles_modified(self):
         stylesheet = get_stylesheet(show_error_dialog=True)
         if stylesheet and (stylesheet != self.stylesheet):
@@ -48,7 +48,7 @@ class BarManager(QObject):
             for bar in self.bars:
                 bar.setStyleSheet(self.stylesheet)
 
-    @pyqtSlot()
+    @Slot()
     def on_config_modified(self):
         try:
             config = get_config(show_error_dialog=True)
@@ -75,7 +75,7 @@ class BarManager(QObject):
                 self.config = config
             logging.info("Successfully loaded updated config and re-initialised all bars.")
 
-    @pyqtSlot(QScreen)
+    @Slot(QScreen)
     def on_screens_update(self, _screen: QScreen) -> None:
         logging.info("Screens updated. Re-initialising all bars.")
         reload_application("Reloading Application because of screen update.")

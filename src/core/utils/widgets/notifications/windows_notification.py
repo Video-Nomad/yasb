@@ -3,7 +3,7 @@ import logging
 from enum import IntFlag
 
 import winrt.windows.ui.notifications.management as management
-from PyQt6.QtCore import QThread, pyqtSignal
+from PySide6.QtCore import QThread, Signal
 
 from core.event_service import EventService
 
@@ -28,7 +28,7 @@ def get_all_kinds():
 
 
 class WindowsNotificationEventListener(QThread):
-    clear_notifications = pyqtSignal(str)
+    clear_notifications = Signal(str)
 
     def __init__(self):
         super().__init__()

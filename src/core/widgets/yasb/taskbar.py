@@ -4,9 +4,9 @@ import logging
 import win32con
 import win32gui
 from PIL import Image
-from PyQt6.QtCore import QEasingCurve, QMimeData, QPropertyAnimation, Qt, QTimer, pyqtSignal
-from PyQt6.QtGui import QCursor, QDrag, QImage, QMouseEvent, QPixmap
-from PyQt6.QtWidgets import QApplication, QFrame, QHBoxLayout, QLabel, QSizePolicy, QWidget
+from PySide6.QtCore import QEasingCurve, QMimeData, QPropertyAnimation, Qt, QTimer, Signal
+from PySide6.QtGui import QCursor, QDrag, QImage, QMouseEvent, QPixmap
+from PySide6.QtWidgets import QApplication, QFrame, QHBoxLayout, QLabel, QSizePolicy, QWidget
 
 from core.utils.tooltip import set_tooltip
 from core.utils.utilities import add_shadow
@@ -172,8 +172,8 @@ class DraggableAppButton(QFrame):
 
 
 class TaskbarDropWidget(QFrame):
-    drag_started = pyqtSignal()
-    drag_ended = pyqtSignal()
+    drag_started = Signal()
+    drag_ended = Signal()
 
     def __init__(self, owner: "TaskbarWidget", parent: QWidget | None = None):
         super().__init__(parent)

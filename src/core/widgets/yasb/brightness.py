@@ -4,9 +4,9 @@ import re
 from datetime import datetime
 
 import screen_brightness_control as sbc
-from PyQt6.QtCore import Qt, QTimer
-from PyQt6.QtGui import QWheelEvent
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QSlider, QVBoxLayout
+from PySide6.QtCore import Qt, QTimer
+from PySide6.QtGui import QWheelEvent
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QSlider, QVBoxLayout
 
 from core.utils.tooltip import set_tooltip
 from core.utils.utilities import PopupWidget, add_shadow, build_progress_widget, build_widget_label

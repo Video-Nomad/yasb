@@ -1,6 +1,8 @@
+import logging
 import re
 
-from PyQt6.QtCore import (
+from PySide6.QtCore import (
+    Property,
     QEasingCurve,
     QEvent,
     QObject,
@@ -8,10 +10,9 @@ from PyQt6.QtCore import (
     QPropertyAnimation,
     Qt,
     QTimer,
-    pyqtProperty,
 )
-from PyQt6.QtGui import QCursor, QGuiApplication
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QWidget
+from PySide6.QtGui import QCursor, QGuiApplication
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QWidget
 
 from core.config import get_stylesheet
 
@@ -169,7 +170,7 @@ class CustomToolTip(QFrame):
         self._opacity = opacity
         self.setWindowOpacity(opacity)
 
-    opacity = pyqtProperty(float, get_opacity, set_opacity)
+    opacity = Property(float, get_opacity, set_opacity)
 
     def get_slide_offset(self):
         return self._slide_offset
@@ -179,7 +180,7 @@ class CustomToolTip(QFrame):
         if self._base_pos:
             self.move(self._base_pos.x(), self._base_pos.y() + int(offset))
 
-    slide_offset = pyqtProperty(float, get_slide_offset, set_slide_offset)
+    slide_offset = Property(float, get_slide_offset, set_slide_offset)
 
     def update_content(self, text):
         """Update tooltip content without hiding it."""
@@ -413,6 +414,8 @@ class TooltipEventFilter(QObject):
         # Application-wide mouse move
         if event.type() == QEvent.Type.MouseMove and self.tooltip and self.tooltip.isVisible():
             self._poll_mouse()
+        if not isinstance(obj, QObject):
+            return False
         return super().eventFilter(obj, event)
 
 

@@ -13,9 +13,7 @@ license = { file = "LICENSE" }
 readme = "README.md"
 requires-python = "==3.12.*"
 dependencies = [
-    "PyQt6==6.9.1",
-    "PyQt6-Qt6==6.9.1",
-    "PyQt6_sip",
+    "pyside6>=6.10.0",
     "cerberus",
     "humanize",
     "psutil",
@@ -56,7 +54,8 @@ dependencies = [
 dev = [
     "pre-commit",
     "ruff",
-    "cx_Freeze==7.2.10"
+    "pyside6-stubs",
+    "cx_Freeze==7.2.10",
 ]
 
 [tool.hatch.metadata]

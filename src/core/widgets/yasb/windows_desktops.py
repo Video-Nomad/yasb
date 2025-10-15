@@ -1,15 +1,15 @@
 import logging
 
-from PyQt6.QtCore import (
+from PySide6.QtCore import (
     QEasingCurve,
     QParallelAnimationGroup,
     QPropertyAnimation,
     Qt,
     QTimer,
-    pyqtSignal,
+    Signal,
 )
-from PyQt6.QtGui import QAction, QCursor
-from PyQt6.QtWidgets import (
+from PySide6.QtGui import QAction, QCursor
+from PySide6.QtWidgets import (
     QFileDialog,
     QFrame,
     QHBoxLayout,
@@ -227,8 +227,8 @@ class WorkspaceButton(QPushButton):
 
 
 class WorkspaceWidget(BaseWidget):
-    d_signal_virtual_desktop_changed = pyqtSignal(dict)
-    d_signal_virtual_desktop_update = pyqtSignal(dict, dict)
+    d_signal_virtual_desktop_changed = Signal(dict)
+    d_signal_virtual_desktop_update = Signal(dict, dict)
     validation_schema = VALIDATION_SCHEMA
     _instances: list["WorkspaceWidget"] = []
     _shared_timer: QTimer | None = None

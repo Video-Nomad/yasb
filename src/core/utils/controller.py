@@ -2,8 +2,8 @@ import logging
 import os
 import sys
 
-from PyQt6.QtCore import QMetaObject, QProcess, Qt
-from PyQt6.QtWidgets import QApplication
+from PySide6.QtCore import QMetaObject, QProcess, Qt
+from PySide6.QtWidgets import QApplication
 
 from core.event_service import EventService
 from core.utils.cli_server import CliPipeHandler

@@ -3,8 +3,8 @@ import re
 
 import psutil
 import win32api
-from PyQt6.QtCore import Qt, pyqtSignal
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QProgressBar, QVBoxLayout, QWidget
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QProgressBar, QVBoxLayout, QWidget
 
 from core.utils.utilities import PopupWidget, add_shadow, build_progress_widget, build_widget_label
 from core.utils.widgets.animation_manager import AnimationManager
@@ -13,7 +13,7 @@ from core.widgets.base import BaseWidget
 
 
 class ClickableDiskWidget(QWidget):
-    clicked = pyqtSignal()
+    clicked = Signal()
 
     def __init__(self, label, parent=None):
         super().__init__(parent)

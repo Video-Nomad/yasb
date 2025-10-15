@@ -5,9 +5,9 @@ import re
 from enum import StrEnum
 from typing import Any
 
-from PyQt6.QtCore import QEvent, QObject, QPoint, QPropertyAnimation, Qt, QThread, QTimer, pyqtSignal
-from PyQt6.QtGui import QColor, QContextMenuEvent, QKeyEvent, QMouseEvent, QPainter, QPaintEvent
-from PyQt6.QtWidgets import (
+from PySide6.QtCore import QEvent, QObject, QPoint, QPropertyAnimation, Qt, QThread, QTimer, Signal
+from PySide6.QtGui import QColor, QContextMenuEvent, QKeyEvent, QMouseEvent, QPainter, QPaintEvent
+from PySide6.QtWidgets import (
     QApplication,
     QFrame,
     QHBoxLayout,
@@ -72,8 +72,8 @@ class ContextMenuMixin:
 class ChatInputEdit(ContextMenuMixin, QTextEdit):
     """Custom text edit for chat input with enter key handling and signal for sending messages"""
 
-    send_message = pyqtSignal()
-    text_changed = pyqtSignal()
+    send_message = Signal()
+    text_changed = Signal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -912,10 +912,10 @@ class AiChatWidget(BaseWidget):
         return True
 
     class _StreamWorker(QObject):
-        chunk_signal = pyqtSignal(str)
-        done_signal = pyqtSignal(str)
-        error_signal = pyqtSignal(str)
-        finished_signal = pyqtSignal()
+        chunk_signal = Signal(str)
+        done_signal = Signal(str)
+        error_signal = Signal(str)
+        finished_signal = Signal()
 
         def __init__(
             self,

@@ -3,9 +3,9 @@ import os
 import re
 from typing import Dict, Set
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFontDatabase, QIcon
-from PyQt6.QtWidgets import QCheckBox, QMessageBox
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QFontDatabase, QIcon
+from PySide6.QtWidgets import QCheckBox, QMessageBox
 
 from core.utils.utilities import app_data_path
 from settings import DEBUG, SCRIPT_PATH

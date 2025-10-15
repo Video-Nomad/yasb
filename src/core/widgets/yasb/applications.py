@@ -2,9 +2,9 @@ import logging
 import os
 import subprocess
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QCursor, QPixmap
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QWidget
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QCursor, QPixmap
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QWidget
 
 from core.utils.tooltip import set_tooltip
 from core.utils.utilities import add_shadow

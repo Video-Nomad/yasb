@@ -1,9 +1,9 @@
 import logging
 
 import win32con
-from PyQt6.QtCore import QEasingCurve, QEvent, QPropertyAnimation, QRect, Qt, pyqtSignal
-from PyQt6.QtGui import QScreen
-from PyQt6.QtWidgets import QFrame, QGridLayout, QHBoxLayout, QWidget
+from PySide6.QtCore import QEasingCurve, QEvent, QPropertyAnimation, QRect, Qt, Signal
+from PySide6.QtGui import QScreen
+from PySide6.QtWidgets import QFrame, QGridLayout, QHBoxLayout, QWidget
 
 from core.bar_helper import AutoHideManager, BarContextMenu, FullscreenManager, OsThemeManager
 from core.event_service import EventService
@@ -23,7 +23,7 @@ except ImportError:
 
 
 class Bar(QWidget):
-    handle_bar_management = pyqtSignal(str, str)
+    handle_bar_management = Signal(str, str)
 
     def __init__(
         self,

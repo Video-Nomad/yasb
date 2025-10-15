@@ -4,17 +4,17 @@ from dataclasses import replace
 from functools import partial
 from typing import Any, override
 
-from PyQt6.QtCore import (
+from PySide6.QtCore import (
     QEvent,
     QObject,
     QPoint,
     Qt,
     QTimer,
-    pyqtSignal,
-    pyqtSlot,  # pyright: ignore [reportUnknownVariableType]
+    Signal,
+    Slot,  # pyright: ignore [reportUnknownVariableType]
 )
-from PyQt6.QtGui import QCursor, QMouseEvent
-from PyQt6.QtWidgets import (
+from PySide6.QtGui import QCursor, QMouseEvent
+from PySide6.QtWidgets import (
     QCheckBox,
     QFrame,
     QHBoxLayout,
@@ -46,7 +46,7 @@ logger = logging.getLogger("wifi_widget")
 
 
 class ClickableLabel(QLabel):
-    clicked = pyqtSignal()
+    clicked = Signal()
 
     def __init__(self, parent: QWidget | None = None):
         super().__init__(parent)
@@ -70,11 +70,11 @@ class ClickableLabel(QLabel):
 
 
 class WifiItem(QFrame):
-    clicked = pyqtSignal()
-    connect_pressed = pyqtSignal(NetworkInfo, str, str)
-    disconnect_pressed = pyqtSignal(NetworkInfo)
-    forget_pressed = pyqtSignal(NetworkInfo)
-    auto_connect_toggled = pyqtSignal(NetworkInfo)
+    clicked = Signal()
+    connect_pressed = Signal(NetworkInfo, str, str)
+    disconnect_pressed = Signal(NetworkInfo)
+    forget_pressed = Signal(NetworkInfo)
+    auto_connect_toggled = Signal(NetworkInfo)
 
     def __init__(self, parent: QWidget | None = None):
         super().__init__(parent)
@@ -170,7 +170,7 @@ class WifiItem(QFrame):
         self.main_layout.addWidget(self.wifi_details_container)
         self.main_layout.addWidget(self.wifi_controls_container)
 
-    @pyqtSlot(QPoint)
+    @Slot(QPoint)
     def show_context_menu(self, pos: QPoint):
         menu = QMenu(self)
         menu.setProperty("class", "context-menu")
@@ -221,12 +221,12 @@ class WifiItem(QFrame):
 
         menu.exec(self.mapToGlobal(pos))  # pyright: ignore[reportUnknownMemberType]
 
-    @pyqtSlot()
+    @Slot()
     def _enable_auto_connect_checkbox(self):
         if is_valid_qobject(self.auto_connect_checkbox):
             self.auto_connect_checkbox.setEnabled(True)
 
-    @pyqtSlot()
+    @Slot()
     def _toggle_auto_connect(self):
         self.data.auto_connect = not self.data.auto_connect
         self.auto_connect_toggled.emit(self.data)
@@ -256,7 +256,7 @@ class WifiItem(QFrame):
         self.wifi_icon.setText(data.icon)
         self.update_state()
 
-    @pyqtSlot()
+    @Slot()
     def _manage_connection_click(self):
         """Disconnect from the current network"""
         if self.state & WifiState.CONNECTED:
@@ -304,10 +304,10 @@ class WifiItem(QFrame):
 
 
 class WifiList(QScrollArea):
-    connect_pressed = pyqtSignal(NetworkInfo, str, str)
-    disconnect_pressed = pyqtSignal(NetworkInfo)
-    forget_pressed = pyqtSignal(NetworkInfo)
-    auto_connect_toggled = pyqtSignal(NetworkInfo)
+    connect_pressed = Signal(NetworkInfo, str, str)
+    disconnect_pressed = Signal(NetworkInfo)
+    forget_pressed = Signal(NetworkInfo)
+    auto_connect_toggled = Signal(NetworkInfo)
 
     def __init__(self, parent: QWidget | None = None):
         super().__init__(parent)
@@ -405,7 +405,7 @@ class WifiList(QScrollArea):
         for key, item in self._items.items():
             item.active = key == name
 
-    @pyqtSlot(WifiItem)
+    @Slot(WifiItem)
     def _on_item_clicked(self, selected: WifiItem):
         for item in self._items.values():
             item.update_state(item is selected)
@@ -425,8 +425,8 @@ class WifiMenu(QWidget):
         self._parent = parent
         self.menu_config = menu_config
         self.wifi_manager = WiFiManager(self)
-        self.wifi_manager.wifi_scan_completed.connect(self._on_wifi_scan_completed)  # pyright: ignore[reportUnknownMemberType]
-        self.wifi_manager.wifi_disconnected.connect(self._on_wifi_disconnected)  # pyright: ignore[reportUnknownMemberType]
+        self.wifi_manager.wifi_scan_completed.connect(self._on_wifi_scan_completed)
+        self.wifi_manager.wifi_disconnected.connect(self._on_wifi_disconnected)
 
         self.wifi_connection_worker: WiFiConnectWorker | None = None
         self.wifi_disconnect_worker: WifiDisconnectWorker | None = None
@@ -435,7 +435,7 @@ class WifiMenu(QWidget):
 
         self.list_update_timer = QTimer(self)
         self.list_update_timer.setSingleShot(True)
-        self.list_update_timer.timeout.connect(self._update_wifi_items_list)  # pyright: ignore[reportUnknownMemberType]
+        self.list_update_timer.timeout.connect(self._update_wifi_items_list)
 
         self.error_connection = None
 
@@ -532,12 +532,12 @@ class WifiMenu(QWidget):
             self.menu_progress_bar.setVisible(False)
             QTimer.singleShot(4000, hide_error_message)  # pyright: ignore[reportUnknownMemberType]
 
-    @pyqtSlot()
+    @Slot()
     def _on_wifi_menu_deleted(self):
         """Called when the wifi menu is deleted"""
         self.wifi_manager.wifi_updates_enabled = False
 
-    @pyqtSlot(NetworkInfo, str, str)
+    @Slot(NetworkInfo, str, str)
     def _connect(self, network: NetworkInfo, password: str, ssid: str = ""):
         """Connect to the currently selected network"""
         if is_valid_qobject(self.wifi_connection_worker) and self.wifi_connection_worker.isRunning():
@@ -554,7 +554,7 @@ class WifiMenu(QWidget):
             return
         self.menu_progress_bar.setVisible(True)
 
-    @pyqtSlot(WiFiConnectionStatus, str, NetworkInfo)
+    @Slot(WiFiConnectionStatus, str, NetworkInfo)
     def _on_connection_attempt_completed(self, result: WiFiConnectionStatus, profile_name: str, network: NetworkInfo):
         if result != WiFiConnectionStatus.SUCCESS:
             if result == WiFiConnectionStatus.INVALID_CREDENTIAL:
@@ -596,7 +596,7 @@ class WifiMenu(QWidget):
         if WifiMenu._networks_cache.get(network.ssid):
             WifiMenu._networks_cache[network.ssid] = replace(network, state=network.state & ~WifiState.CONNECTED)
 
-    @pyqtSlot(str)
+    @Slot(str)
     def _on_wifi_disconnected(self, profile_name: str):
         """Handle when a WiFi network is disconnected"""
         logger.debug("WiFi network disconnected")
@@ -610,7 +610,7 @@ class WifiMenu(QWidget):
             if item := self.menu_wifi_list.get_item(profile_name):
                 item.data = replace(item.data, state=item.data.state & ~WifiState.CONNECTED)
 
-    @pyqtSlot(NetworkInfo)
+    @Slot(NetworkInfo)
     def _forget_network(self, network: NetworkInfo):
         """Forget a specific WiFi network"""
         logger.debug("Forgetting wifi network...")
@@ -633,7 +633,7 @@ class WifiMenu(QWidget):
                 profile_exists=False,
             )
 
-    @pyqtSlot()
+    @Slot()
     def _scan_wifi(self):
         """Trigger a WiFi scan"""
         # This is async and will emit a signal when finished
@@ -641,7 +641,7 @@ class WifiMenu(QWidget):
         if is_valid_qobject(self.popup_window):
             self.menu_progress_bar.setVisible(True)
 
-    @pyqtSlot(ScanResultStatus, list)
+    @Slot(ScanResultStatus, list)
     def _on_wifi_scan_completed(self, result: ScanResultStatus, networks: list[NetworkInfo]):
         """Handle the WiFi scan is completed event"""
         # Check if location services are enabled
@@ -680,7 +680,7 @@ class WifiMenu(QWidget):
         WifiMenu._networks_cache = {network.ssid: network for network in networks}
         self.list_update_timer.start(100)  # Avoid unnecessary ui updates
 
-    @pyqtSlot(NetworkInfo)
+    @Slot(NetworkInfo)
     def _on_auto_connect_toggled(self, network: NetworkInfo):
         """Handle the auto-connect setting is toggled event"""
         if network.ssid in self._networks_cache:
@@ -701,7 +701,7 @@ class WifiMenu(QWidget):
             self.wifi_connection_worker.result.connect(self._on_connection_attempt_completed)  # pyright: ignore[reportUnknownMemberType]
             self.wifi_connection_worker.start()
 
-    @pyqtSlot()
+    @Slot()
     def _update_wifi_items_list(self):
         """Update the WiFi items list"""
         if not is_valid_qobject(self.popup_window):

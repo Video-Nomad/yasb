@@ -1,8 +1,8 @@
 import logging
 from typing import Any
 
-from PyQt6.QtCore import QEvent
-from PyQt6.QtWidgets import QFrame, QHBoxLayout
+from PySide6.QtCore import QEvent
+from PySide6.QtWidgets import QFrame, QHBoxLayout
 
 from core.config import get_config
 from core.utils.utilities import add_shadow

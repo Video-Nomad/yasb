@@ -5,8 +5,8 @@ import subprocess
 import threading
 
 import win32com.client
-from PyQt6.QtCore import Qt, QThread, pyqtSignal
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel
+from PySide6.QtCore import Qt, QThread, Signal
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel
 
 from core.utils.tooltip import set_tooltip
 from core.utils.utilities import add_shadow
@@ -16,8 +16,8 @@ from settings import DEBUG
 
 
 class UpdateWorker(QThread):
-    windows_update_signal = pyqtSignal(dict)
-    winget_update_signal = pyqtSignal(dict)
+    windows_update_signal = Signal(dict)
+    winget_update_signal = Signal(dict)
 
     def __init__(self, update_type, exclude_list=None, parent=None):
         super().__init__(parent)

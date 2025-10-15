@@ -3,9 +3,9 @@ from contextlib import suppress
 from typing import Dict, List, Literal
 
 from PIL import Image
-from PyQt6.QtCore import Qt, pyqtSignal
-from PyQt6.QtGui import QCursor, QImage, QMouseEvent, QPixmap
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QWidget
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtGui import QCursor, QImage, QMouseEvent, QPixmap
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QWidget
 
 from core.event_enums import KomorebiEvent
 from core.event_service import EventService
@@ -63,6 +63,9 @@ class WorkspaceButton(QPushButton):
             new_class = " ".join([cls for cls in current_class.split() if not cls.startswith("button-")])
             new_class = f"{new_class} button-{index + 1}"
             button.setProperty("class", new_class)
+            if style := self.style():
+                style.unpolish(self)
+                style.polish(self)
             button.setStyleSheet("")
 
     def update_and_redraw(self, status: WorkspaceStatus, lock_width: bool = False):
@@ -76,6 +79,9 @@ class WorkspaceButton(QPushButton):
             self.setText(self.populated_label)
         else:
             self.setText(self.default_label)
+        if style := self.style():
+            style.unpolish(self)
+            style.polish(self)
         self.setStyleSheet("")
         if lock_width and prev_width is not None:
             self.setFixedWidth(prev_width)
@@ -136,6 +142,9 @@ class WorkspaceButtonWithIcons(QFrame):
             new_class = " ".join([cls for cls in current_class.split() if not cls.startswith("button-")])
             new_class = f"{new_class} button-{index + 1}"
             button.setProperty("class", new_class)
+            if style := self.style():
+                style.unpolish(self)
+                style.polish(self)
             button.setStyleSheet("")
 
     def update_and_redraw(self, status: WorkspaceStatus, lock_width: bool = False):
@@ -148,6 +157,9 @@ class WorkspaceButtonWithIcons(QFrame):
             self.text_label.setText(self.populated_label)
         else:
             self.text_label.setText(self.default_label)
+        if style := self.style():
+            style.unpolish(self)
+            style.polish(self)
         self.setStyleSheet("")
         if lock_width and prev_width is not None:
             self.setFixedWidth(prev_width)
@@ -218,9 +230,9 @@ class WorkspaceButtonWithIcons(QFrame):
 
 
 class WorkspaceWidget(BaseWidget):
-    k_signal_connect = pyqtSignal(dict)
-    k_signal_update = pyqtSignal(dict, dict)
-    k_signal_disconnect = pyqtSignal()
+    k_signal_connect = Signal(dict)
+    k_signal_update = Signal(dict, dict)
+    k_signal_disconnect = Signal()
     validation_schema = VALIDATION_SCHEMA
     event_listener = KomorebiEventListener
 

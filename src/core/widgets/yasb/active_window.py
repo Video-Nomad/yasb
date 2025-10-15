@@ -5,9 +5,9 @@ import re
 
 import win32gui
 from PIL import Image
-from PyQt6.QtCore import QElapsedTimer, Qt, QTimer, pyqtSignal
-from PyQt6.QtGui import QImage, QPixmap
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel
+from PySide6.QtCore import QElapsedTimer, Qt, QTimer, Signal
+from PySide6.QtGui import QImage, QPixmap
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel
 
 from core.event_service import EventService
 from core.utils.utilities import add_shadow
@@ -41,10 +41,10 @@ except ImportError:
 
 
 class ActiveWindowWidget(BaseWidget):
-    foreground_change = pyqtSignal(int, WinEvent)
-    window_name_change = pyqtSignal(int, WinEvent)
-    window_destroy = pyqtSignal(int, WinEvent)
-    focus_change_workspaces = pyqtSignal(str)
+    foreground_change = Signal(int, WinEvent)
+    window_name_change = Signal(int, WinEvent)
+    window_destroy = Signal(int, WinEvent)
+    focus_change_workspaces = Signal(str)
     validation_schema = VALIDATION_SCHEMA
     event_listener = SystemEventListener
 

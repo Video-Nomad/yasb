@@ -2,8 +2,8 @@ import logging
 import os
 import subprocess
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QVBoxLayout, QWidget
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QVBoxLayout, QWidget
 
 from core.utils.utilities import PopupWidget, add_shadow, build_widget_label
 from core.utils.widgets.animation_manager import AnimationManager

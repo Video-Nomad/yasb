@@ -1,6 +1,6 @@
-from PyQt6.QtCore import QEasingCurve, QPointF, QPropertyAnimation, Qt, pyqtProperty
-from PyQt6.QtGui import QColor, QConicalGradient, QPainter, QPen
-from PyQt6.QtWidgets import QFrame, QVBoxLayout
+from PySide6.QtCore import Property, QEasingCurve, QPointF, QPropertyAnimation, Qt
+from PySide6.QtGui import QColor, QConicalGradient, QPainter, QPen
+from PySide6.QtWidgets import QFrame, QVBoxLayout
 
 
 class CircularProgressBar(QFrame):
@@ -32,7 +32,7 @@ class CircularProgressBar(QFrame):
         self.setFixedSize(self._size, self._size)
         self._update_angles()
 
-    @pyqtProperty(float)
+    @Property(float)
     def animatedValue(self):
         """Get the current animated value."""
         return self._value

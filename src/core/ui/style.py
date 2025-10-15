@@ -5,8 +5,8 @@ Provides functions to build and apply styles to UI components based on the curre
 
 from typing import Dict
 
-from PyQt6.QtGui import QPalette
-from PyQt6.QtWidgets import QApplication, QPushButton
+from PySide6.QtGui import QPalette
+from PySide6.QtWidgets import QApplication, QPushButton
 
 from core.ui.color_tokens import BUTTON_COLOR_TOKENS, LINK_COLOR_TOKENS
 

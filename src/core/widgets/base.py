@@ -3,9 +3,9 @@ import re
 import subprocess
 from typing import Callable, Union
 
-from PyQt6.QtCore import Qt, QThread, QTimer
-from PyQt6.QtGui import QMouseEvent
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QWidget
+from PySide6.QtCore import Qt, QThread, QTimer
+from PySide6.QtGui import QMouseEvent
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QWidget
 
 from core.utils.win32.system_function import function_map
 

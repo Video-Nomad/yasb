@@ -3,9 +3,9 @@ import logging
 import re
 from ctypes import wintypes
 
-from PyQt6.QtCore import Qt, QTimer
-from PyQt6.QtGui import QCursor
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout
+from PySide6.QtCore import Qt, QTimer
+from PySide6.QtGui import QCursor
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout
 
 from core.utils.utilities import PopupWidget, add_shadow, build_widget_label
 from core.utils.win32.bindings import PowerEnumerate, PowerGetActiveScheme, PowerReadFriendlyName, PowerSetActiveScheme

@@ -7,8 +7,8 @@ from ctypes import GetLastError, byref, c_ulong, create_unicode_buffer
 
 import win32api
 import win32gui
-from PyQt6.QtGui import QCursor
-from PyQt6.QtWidgets import QApplication
+from PySide6.QtGui import QCursor
+from PySide6.QtWidgets import QApplication
 from win32api import GetMonitorInfo, MonitorFromWindow
 from win32gui import GetClassName, GetWindowPlacement, GetWindowRect, GetWindowText
 from winrt.windows.management.deployment import PackageManager
@@ -290,7 +290,7 @@ def qmenu_rounded_corners(qwidget):
     if is_windows_10():
         return
     try:
-        from PyQt6.QtWidgets import QStyleFactory
+        from PySide6.QtWidgets import QStyleFactory
 
         from core.utils.win32.win32_accent import Blur
 

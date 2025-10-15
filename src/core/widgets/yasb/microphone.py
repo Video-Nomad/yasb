@@ -13,9 +13,9 @@ from pycaw.pycaw import (
     IAudioEndpointVolume,
     IAudioEndpointVolumeCallback,  # import the public enumerator
 )
-from PyQt6.QtCore import Qt, pyqtSignal
-from PyQt6.QtGui import QWheelEvent
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QSlider, QVBoxLayout
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtGui import QWheelEvent
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QSlider, QVBoxLayout
 
 from core.utils.tooltip import set_tooltip
 from core.utils.utilities import PopupWidget, add_shadow, build_progress_widget, build_widget_label
@@ -49,7 +49,7 @@ class AudioEndpointVolumeCallback(COMObject):
 
 class MicrophoneWidget(BaseWidget):
     validation_schema = VALIDATION_SCHEMA
-    update_label_signal = pyqtSignal()
+    update_label_signal = Signal()
 
     def __init__(
         self,

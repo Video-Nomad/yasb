@@ -2,13 +2,13 @@ import logging
 import socket
 
 import psutil
-from PyQt6.QtCore import QObject, QThread, QTimer, pyqtSignal
+from PySide6.QtCore import QObject, QThread, QTimer, Signal
 
 
 class ConnectionTestWorker(QThread):
     """Worker thread for testing internet connectivity"""
 
-    result_ready = pyqtSignal(bool)
+    result_ready = Signal(bool)
 
     def __init__(self, interface=None):
         super().__init__()
@@ -79,7 +79,7 @@ class ConnectionTestWorker(QThread):
 class InternetChecker(QObject):
     """Monitor internet connectivity and emit signals on changes"""
 
-    connection_changed = pyqtSignal(bool)
+    connection_changed = Signal(bool)
 
     def __init__(self, parent=None, check_interval=10000, interface=None):
         super().__init__(parent)

@@ -3,8 +3,8 @@ import re
 import subprocess
 import threading
 
-from PyQt6.QtCore import QObject, Qt, pyqtSignal
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel
+from PySide6.QtCore import QObject, Qt, Signal
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel
 
 from core.utils.utilities import add_shadow
 from core.utils.widgets.animation_manager import AnimationManager
@@ -14,8 +14,8 @@ from core.widgets.base import BaseWidget
 
 
 class CustomWorker(QObject):
-    finished = pyqtSignal()
-    data_ready = pyqtSignal(object)
+    finished = Signal()
+    data_ready = Signal(object)
 
     def __init__(self, cmd, use_shell, encoding, return_type, hide_empty):
         super().__init__()

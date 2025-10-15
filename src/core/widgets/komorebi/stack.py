@@ -5,9 +5,9 @@ from typing import Literal
 
 import win32gui
 from PIL import Image
-from PyQt6.QtCore import Qt, QTimer, pyqtSignal
-from PyQt6.QtGui import QCursor, QImage, QMouseEvent, QPixmap
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QWidget
+from PySide6.QtCore import Qt, QTimer, Signal
+from PySide6.QtGui import QCursor, QImage, QMouseEvent, QPixmap
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QWidget
 
 from core.event_enums import KomorebiEvent
 from core.event_service import EventService
@@ -157,9 +157,9 @@ class WindowButton(QFrame):
 
 
 class StackWidget(BaseWidget):
-    k_signal_connect = pyqtSignal(dict)
-    k_signal_update = pyqtSignal(dict, dict)
-    k_signal_disconnect = pyqtSignal()
+    k_signal_connect = Signal(dict)
+    k_signal_update = Signal(dict, dict)
+    k_signal_disconnect = Signal()
     validation_schema = VALIDATION_SCHEMA
     event_listener = KomorebiEventListener
 
@@ -506,14 +506,12 @@ class StackWidget(BaseWidget):
     def _get_window_label(self, window_index):
         window = self._komorebi_windows[window_index]
         w_index = window_index if self._label_zero_index else window_index + 1
-        
+
         # Apply rewrite filter to title and process name
         title = self._rewrite_filter(window["title"])
         process_name = self._rewrite_filter(window["exe"])
-        
-        default_label = self._label_window.format(
-            index=w_index, title=title, process=process_name, hwnd=window["hwnd"]
-        )
+
+        default_label = self._label_window.format(index=w_index, title=title, process=process_name, hwnd=window["hwnd"])
         active_label = self._label_window_active.format(
             index=w_index, title=title, process=process_name, hwnd=window["hwnd"]
         )

@@ -4,13 +4,13 @@ from enum import StrEnum, auto
 from typing import Any, override
 
 from PIL import Image
-from PyQt6.QtCore import (
+from PySide6.QtCore import (
     Qt,
     QTimer,
-    pyqtSlot,  # type: ignore
+    Slot,  # type: ignore
 )
-from PyQt6.QtGui import QCursor, QImage, QMouseEvent, QPixmap, QShowEvent, QWheelEvent
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QWidget
+from PySide6.QtGui import QCursor, QImage, QMouseEvent, QPixmap, QShowEvent, QWheelEvent
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QWidget
 
 from core.utils.utilities import add_shadow
 from core.utils.widgets.glazewm.client import GlazewmClient, Monitor, Window
@@ -73,7 +73,7 @@ class GlazewmWorkspaceButton(QPushButton):
         self.setProperty("class", f"ws-btn {self.status.value}")
         self.setStyleSheet("")
 
-    @pyqtSlot()
+    @Slot()
     def _activate_workspace(self):
         self.glazewm_client.activate_workspace(self.workspace_name)
 
@@ -166,6 +166,9 @@ class GlazewmWorkspaceButtonWithIcons(QFrame):
         self._update_label()
         self._update_icons()
         self.setProperty("class", f"ws-btn {self.status.value}")
+        if style := self.style():
+            style.unpolish(self)
+            style.polish(self)
         self.setStyleSheet("")
 
     def _update_label(self):
@@ -436,12 +439,12 @@ class GlazewmWorkspacesWidget(BaseWidget):
         self.monitor_handle = get_monitor_hwnd(int(QWidget.winId(self)))
         self.glazewm_client.connect()
 
-    @pyqtSlot(bool)
+    @Slot(bool)
     def _update_connection_status(self, status: bool):
         self.workspace_container.setVisible(status)
         self.offline_text.setVisible(not status if not self.hide_if_offline else False)
 
-    @pyqtSlot(list)
+    @Slot(list)
     def _update_workspaces(self, message: list[Monitor]):
         # Find the target monitor
         current_mon = next((m for m in message if m.hwnd == self.monitor_handle), None)

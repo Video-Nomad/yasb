@@ -5,14 +5,14 @@ import threading
 from typing import Any, override
 from uuid import UUID
 
-from PyQt6.QtCore import (
+from PySide6.QtCore import (
     QPoint,
     Qt,
     QThread,
     QTimer,
-    pyqtSlot,  # pyright: ignore [reportUnknownVariableType]
+    Slot,  # pyright: ignore [reportUnknownVariableType]
 )
-from PyQt6.QtWidgets import (
+from PySide6.QtWidgets import (
     QApplication,
     QFrame,
     QHBoxLayout,
@@ -285,19 +285,19 @@ class SystrayWidget(BaseWidget):
         logger.debug("Systray thread started")
         QTimer.singleShot(200, TrayMonitor.send_taskbar_created)  # pyright: ignore [reportUnknownMemberType]
 
-    @pyqtSlot()
+    @Slot()
     def on_drag_started(self):
         """Handle drag started signal for drag-and-drop functionality"""
         # Always show pinned widget during drag operations
         self.update_pinned_widget_visibility(force_show=True)
 
-    @pyqtSlot()
+    @Slot()
     def on_drag_ended(self):
         """Handle drag ended signal for drag-and-drop functionality"""
         # Update visibility based on content
         self.update_pinned_widget_visibility()
 
-    @pyqtSlot(IconData)
+    @Slot(IconData)
     def on_icon_modified(self, data: IconData):
         """Handle icon modified signal sent by the tray monitor"""
         if data.guid in self.filtered_guids:
@@ -335,7 +335,7 @@ class SystrayWidget(BaseWidget):
         icon.setHidden(data.uFlags & NIF_STATE != 0 and data.dwState == 1)
         self.pinned_vis_check_timer.start(300)
 
-    @pyqtSlot(IconData)
+    @Slot(IconData)
     def on_icon_deleted(self, data: IconData) -> None:
         """Handles the icon deleted signal sent by the tray monitor"""
         icon = self.find_icon(data.guid, data.hWnd, data.uID)
@@ -344,7 +344,7 @@ class SystrayWidget(BaseWidget):
             icon.deleteLater()
             self.pinned_vis_check_timer.start(300)
 
-    @pyqtSlot(object)
+    @Slot(object)
     def on_icon_pinned_changed(self, icon: IconWidget):
         """Handles the icon pinned changed signal sent when user [Mod]+Clicks on the icon"""
         if icon.parent() is self.unpinned_widget:
@@ -362,7 +362,7 @@ class SystrayWidget(BaseWidget):
         self.save_state()
         self.update_pinned_widget_visibility()
 
-    @pyqtSlot(object)
+    @Slot(object)
     def on_icon_moved(self, icon: IconWidget):
         """Handle icon moved signal"""
         if icon.parent() is self.unpinned_widget:

@@ -6,9 +6,9 @@ import struct
 import subprocess
 import threading
 
-from PyQt6.QtCore import QPointF, QRectF, QTimer, pyqtSignal
-from PyQt6.QtGui import QColor, QLinearGradient, QPainter, QPainterPath
-from PyQt6.QtWidgets import QApplication, QFrame, QHBoxLayout, QLabel
+from PySide6.QtCore import QPointF, QRectF, QTimer, Signal
+from PySide6.QtGui import QColor, QLinearGradient, QPainter, QPainterPath
+from PySide6.QtWidgets import QApplication, QFrame, QHBoxLayout, QLabel
 
 from core.utils.utilities import app_data_path
 from core.validation.widgets.yasb.cava import VALIDATION_SCHEMA
@@ -358,7 +358,7 @@ class CavaBar(QFrame):
 
 class CavaWidget(BaseWidget):
     validation_schema = VALIDATION_SCHEMA
-    samplesUpdated = pyqtSignal(list)
+    samplesUpdated = Signal(list)
 
     def __init__(
         self,

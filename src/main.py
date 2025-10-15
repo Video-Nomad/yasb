@@ -7,7 +7,7 @@ import time
 from sys import argv
 
 import qasync
-from PyQt6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication
 
 import settings
 from core.bar_manager import BarManager
@@ -99,7 +99,7 @@ def main():
         settings.DEBUG = True
         logging.info("Debug mode enabled.")
 
-    # Need qasync event loop to work with PyQt6
+    # Need qasync event loop to work with PySide6
     loop = qasync.QEventLoop(app)
     asyncio.set_event_loop(loop)
 

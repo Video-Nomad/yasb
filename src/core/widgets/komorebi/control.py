@@ -3,8 +3,8 @@ import re
 import subprocess
 from typing import Optional
 
-from PyQt6.QtCore import QEvent, Qt, QThread, pyqtSignal
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QSizePolicy, QVBoxLayout, QWidget
+from PySide6.QtCore import QEvent, Qt, QThread, Signal
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QSizePolicy, QVBoxLayout, QWidget
 
 from core.event_enums import KomorebiEvent
 from core.event_service import EventService
@@ -34,8 +34,8 @@ class ExtPopupWidget(PopupWidget):
 class KomorebiControlWidget(BaseWidget):
     validation_schema = VALIDATION_SCHEMA
 
-    k_signal_connect = pyqtSignal(dict)
-    k_signal_disconnect = pyqtSignal()
+    k_signal_connect = Signal(dict)
+    k_signal_disconnect = Signal()
     event_listener = KomorebiEventListener
 
     def __init__(
@@ -353,7 +353,7 @@ class KomorebiControlWidget(BaseWidget):
 
 
 class VersionCheckThread(QThread):
-    version_result = pyqtSignal(str)
+    version_result = Signal(str)
 
     def __init__(self, komorebic_client):
         super().__init__()

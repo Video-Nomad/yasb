@@ -3,7 +3,7 @@ import logging
 from threading import RLock
 from typing import Any
 
-from PyQt6.QtCore import QObject, pyqtSignal
+from PySide6.QtCore import QObject, Signal
 
 from core.event_enums import Event
 from settings import DEBUG
@@ -13,18 +13,18 @@ from settings import DEBUG
 class EventService(QObject):
     def __init__(self) -> None:
         super().__init__()
-        self._registered_event_signals: dict[Event, list[pyqtSignal]] = {}
+        self._registered_event_signals: dict[Event, list[Signal]] = {}
         self._mutex = RLock()
         self._is_shutdown: bool = False
 
-    def register_event(self, event_type: Event, event_signal: pyqtSignal):
+    def register_event(self, event_type: Event, event_signal: Signal):
         with self._mutex:
             if event_type not in self._registered_event_signals:
                 self._registered_event_signals[event_type] = [event_signal]
             else:
                 self._registered_event_signals[event_type].append(event_signal)
 
-    def unregister_event(self, event_type: Event, event_signal: pyqtSignal):
+    def unregister_event(self, event_type: Event, event_signal: Signal):
         """
         Remove a previously registered signal for an event type.
         Safe to call multiple times; ignores missing entries.

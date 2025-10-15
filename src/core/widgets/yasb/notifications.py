@@ -1,8 +1,8 @@
 import logging
 import re
 
-from PyQt6.QtCore import pyqtSignal
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel
+from PySide6.QtCore import Signal
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel
 
 from core.event_service import EventService
 from core.utils.utilities import add_shadow, build_widget_label, is_windows_10
@@ -20,7 +20,7 @@ except ImportError:
 
 class NotificationsWidget(BaseWidget):
     validation_schema = VALIDATION_SCHEMA
-    windows_notification_update_signal = pyqtSignal(int)
+    windows_notification_update_signal = Signal(int)
     event_listener = WindowsNotificationEventListener
 
     def __init__(

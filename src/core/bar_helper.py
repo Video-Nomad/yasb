@@ -8,9 +8,9 @@ from datetime import datetime
 from functools import partial
 
 import win32gui
-from PyQt6.QtCore import QEvent, QObject, QPropertyAnimation, Qt, QTimer
-from PyQt6.QtGui import QCursor
-from PyQt6.QtWidgets import (
+from PySide6.QtCore import QEvent, QObject, QPropertyAnimation, Qt, QTimer
+from PySide6.QtGui import QCursor
+from PySide6.QtWidgets import (
     QCheckBox,
     QFrame,
     QGraphicsOpacityEffect,

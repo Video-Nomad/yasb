@@ -2,7 +2,7 @@ import ctypes
 import logging
 from typing import Dict, Optional
 
-from PyQt6.QtCore import QAbstractNativeEventFilter, QCoreApplication, QObject, QTimer, pyqtSignal
+from PySide6.QtCore import QAbstractNativeEventFilter, QCoreApplication, QObject, QTimer, Signal
 
 from core.utils.widgets.taskbar.application_window import ApplicationWindow
 from core.utils.win32 import constants as WCONST
@@ -108,7 +108,7 @@ class _ShellHookEventFilter(QAbstractNativeEventFilter):
         self._get_manager = manager_getter  # callable returning TaskbarWindowManager
 
     def nativeEventFilter(self, eventType, message):
-        # On Windows + PyQt6, eventType is 'windows_generic_MSG' and message is MSG*
+        # On Windows + PySide6, eventType is 'windows_generic_MSG' and message is MSG*
         try:
             if eventType != "windows_generic_MSG":
                 return False, 0
@@ -137,10 +137,10 @@ class TaskbarWindowManager(QObject):
     """
 
     # Signal definitions for Qt integration
-    window_added = pyqtSignal(int, dict)
-    window_removed = pyqtSignal(int, dict)
-    window_updated = pyqtSignal(int, dict)
-    window_monitor_changed = pyqtSignal(int, dict)
+    window_added = Signal(int, dict)
+    window_removed = Signal(int, dict)
+    window_updated = Signal(int, dict)
+    window_monitor_changed = Signal(int, dict)
 
     # Windows constants (subset)
     WM_SHELLHOOKMESSAGE = None

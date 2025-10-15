@@ -8,8 +8,8 @@ import os
 import re
 from ctypes import wintypes
 
-from PyQt6.QtCore import QThread, QTimer, pyqtSignal
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel
+from PySide6.QtCore import QThread, QTimer, Signal
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel
 
 from core.utils.tooltip import set_tooltip
 from core.utils.utilities import add_shadow, build_widget_label
@@ -88,7 +88,7 @@ class BLUETOOTH_FIND_RADIO_PARAMS(ctypes.Structure):
 
 
 class BluetoothThread(QThread):
-    status_signal = pyqtSignal(str)
+    status_signal = Signal(str)
 
     def __init__(self, bt_api):
         super().__init__()

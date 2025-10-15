@@ -1,7 +1,7 @@
 import logging
 
-from PyQt6.QtCore import QEasingCurve, QPropertyAnimation, QTimer
-from PyQt6.QtWidgets import QGraphicsOpacityEffect
+from PySide6.QtCore import QEasingCurve, QPropertyAnimation, QTimer
+from PySide6.QtWidgets import QGraphicsOpacityEffect
 
 
 class AnimationManager:

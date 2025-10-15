@@ -2,9 +2,9 @@ import logging
 import os
 import re
 
-from PyQt6.QtCore import QPropertyAnimation, QRectF, Qt, QTimer, pyqtProperty
-from PyQt6.QtGui import QColor, QCursor, QPainter, QPen
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QWidget
+from PySide6.QtCore import Property, QPropertyAnimation, QRectF, Qt, QTimer
+from PySide6.QtGui import QColor, QCursor, QPainter, QPen
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QWidget
 
 from core.utils.utilities import PopupWidget, ToastNotifier, add_shadow, build_progress_widget, build_widget_label
 from core.utils.widgets.animation_manager import AnimationManager
@@ -588,7 +588,7 @@ class CircularProgressWidget(QWidget):
         self._value = value
         self.update()
 
-    animationValue = pyqtProperty(float, getAnimationValue, setAnimationValue)
+    animationValue = Property(float, getAnimationValue, setAnimationValue)
 
     def setMaximum(self, maximum):
         self._maximum = maximum

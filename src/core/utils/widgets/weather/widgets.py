@@ -3,9 +3,9 @@ from datetime import datetime
 from enum import StrEnum
 from typing import Any, override
 
-from PyQt6.QtCore import QPoint, QPointF, QSize, Qt, pyqtSignal
-from PyQt6.QtGui import QColor, QImage, QMouseEvent, QPainter, QPainterPath, QPaintEvent, QPen, QPixmap, QWheelEvent
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QScrollArea, QWidget
+from PySide6.QtCore import QPoint, QPointF, QSize, Qt, Signal
+from PySide6.QtGui import QColor, QImage, QMouseEvent, QPainter, QPainterPath, QPaintEvent, QPen, QPixmap, QWheelEvent
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QScrollArea, QWidget
 
 from core.utils.widgets.weather.api import IconFetcher
 
@@ -48,7 +48,7 @@ def quadratic_bezier_point(p0: QPointF, p1: QPointF, p2: QPointF, t: float) -> Q
 
 
 class ClickableWidget(QFrame):
-    clicked = pyqtSignal()
+    clicked = Signal()
 
     def __init__(self, *args: Any, **kwargs: Any):
         super().__init__(*args, **kwargs)

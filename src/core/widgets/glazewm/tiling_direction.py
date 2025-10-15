@@ -1,12 +1,12 @@
 import logging
 from typing import Any
 
-from PyQt6.QtCore import (
+from PySide6.QtCore import (
     Qt,
-    pyqtSlot,  # type: ignore
+    Slot,  # type: ignore
 )
-from PyQt6.QtGui import QCursor
-from PyQt6.QtWidgets import QHBoxLayout, QPushButton
+from PySide6.QtGui import QCursor
+from PySide6.QtWidgets import QHBoxLayout, QPushButton
 
 from core.utils.utilities import add_shadow
 from core.utils.widgets.glazewm.client import GlazewmClient, TilingDirection
@@ -68,15 +68,15 @@ class GlazewmTilingDirectionWidget(BaseWidget):
         self.glazewm_client.tiling_direction_processed.connect(self._update_tiling_direction)  # type: ignore
         self.glazewm_client.connect()
 
-    @pyqtSlot()
+    @Slot()
     def toggle_tiling_direction(self):
         self.glazewm_client.toggle_tiling_direction()
 
-    @pyqtSlot(bool)
+    @Slot(bool)
     def _update_connection_status(self, status: bool):
         self.tiling_direction_button.setVisible(status)
 
-    @pyqtSlot(TilingDirection)
+    @Slot(TilingDirection)
     def _update_tiling_direction(self, direction: TilingDirection):
         self.current_tiling_direction = direction
         if direction == TilingDirection.HORIZONTAL:

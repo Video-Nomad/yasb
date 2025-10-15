@@ -3,9 +3,9 @@
 import os
 from typing import TYPE_CHECKING, Optional
 
-from PyQt6.QtCore import QEvent, Qt, QTimer
-from PyQt6.QtGui import QIcon
-from PyQt6.QtWidgets import (
+from PySide6.QtCore import QEvent, Qt, QTimer
+from PySide6.QtGui import QIcon
+from PySide6.QtWidgets import (
     QDialog,
     QGraphicsOpacityEffect,
     QHBoxLayout,

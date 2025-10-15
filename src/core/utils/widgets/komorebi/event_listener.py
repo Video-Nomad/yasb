@@ -6,7 +6,7 @@ import uuid
 import pywintypes
 import win32file
 import win32pipe
-from PyQt6.QtCore import QThread
+from PySide6.QtCore import QThread
 
 from core.event_enums import KomorebiEvent
 from core.event_service import EventService

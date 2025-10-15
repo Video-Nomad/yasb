@@ -2,9 +2,9 @@ import logging
 from ctypes import byref, wintypes
 
 import win32gui
-from PyQt6.QtCore import QEasingCurve, QPoint, QPropertyAnimation, QRect, Qt
-from PyQt6.QtGui import QFontMetrics, QPixmap, QRegion
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QWidget
+from PySide6.QtCore import QEasingCurve, QPoint, QPropertyAnimation, QRect, Qt
+from PySide6.QtGui import QFontMetrics, QPixmap, QRegion
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QWidget
 
 from core.utils.win32.bindings.dwmapi import (
     DwmQueryThumbnailSourceSize,

@@ -9,9 +9,9 @@ from datetime import datetime
 from enum import StrEnum
 from typing import Any
 
-from PyQt6.QtCore import QPoint, Qt, QTimer, QUrl
-from PyQt6.QtGui import QColor, QCursor, QDesktopServices, QPainter, QPaintEvent
-from PyQt6.QtWidgets import QFrame, QGraphicsOpacityEffect, QHBoxLayout, QLabel, QScrollArea, QVBoxLayout, QWidget
+from PySide6.QtCore import QPoint, Qt, QTimer, QUrl
+from PySide6.QtGui import QColor, QCursor, QDesktopServices, QPainter, QPaintEvent
+from PySide6.QtWidgets import QFrame, QGraphicsOpacityEffect, QHBoxLayout, QLabel, QScrollArea, QVBoxLayout, QWidget
 
 from core.utils.tooltip import set_tooltip
 from core.utils.utilities import PopupWidget, add_shadow

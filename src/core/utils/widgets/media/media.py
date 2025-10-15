@@ -5,7 +5,7 @@ import threading
 from typing import Any, Callable
 
 from PIL import Image, ImageFile
-from PyQt6.QtCore import QDateTime, QTimer
+from PySide6.QtCore import QDateTime, QTimer
 from winrt.windows.media.control import GlobalSystemMediaTransportControlsSession as Session
 from winrt.windows.media.control import GlobalSystemMediaTransportControlsSessionManager as SessionManager
 from winrt.windows.media.control import (

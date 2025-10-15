@@ -2,7 +2,7 @@ import atexit
 import logging
 import os
 
-from PyQt6.QtCore import QObject
+from PySide6.QtCore import QObject
 from win32con import WM_USER
 
 from core.utils.widgets.systray.utils import NativeWindowEx, get_exe_path_from_hwnd

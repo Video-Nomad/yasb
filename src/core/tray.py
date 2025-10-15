@@ -6,9 +6,9 @@ import threading
 import webbrowser
 from pathlib import Path
 
-from PyQt6.QtCore import QEvent, QSize, Qt
-from PyQt6.QtGui import QCursor, QIcon
-from PyQt6.QtWidgets import QMenu, QSystemTrayIcon
+from PySide6.QtCore import QEvent, QSize, Qt
+from PySide6.QtGui import QCursor, QIcon
+from PySide6.QtWidgets import QMenu, QSystemTrayIcon
 
 from core.bar_manager import BarManager
 from core.config import get_config

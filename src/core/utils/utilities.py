@@ -8,9 +8,8 @@ from pathlib import Path
 from typing import Any, TypeGuard, cast, override
 
 import psutil
-from PyQt6 import sip
-from PyQt6.QtCore import QEvent, QObject, QPoint, QPropertyAnimation, QRect, QSize, Qt, QTimer, pyqtSlot
-from PyQt6.QtGui import (
+from PySide6.QtCore import QEvent, QObject, QPoint, QPropertyAnimation, QRect, QSize, Qt, QTimer, Slot
+from PySide6.QtGui import (
     QColor,
     QFontMetrics,
     QPainter,
@@ -20,7 +19,8 @@ from PyQt6.QtGui import (
     QStaticText,
     QTransform,
 )
-from PyQt6.QtWidgets import QApplication, QFrame, QGraphicsDropShadowEffect, QLabel, QMenu, QWidget
+from PySide6.QtWidgets import QApplication, QFrame, QGraphicsDropShadowEffect, QLabel, QMenu, QWidget
+from shiboken6.Shiboken import isValid
 from winrt.windows.data.xml.dom import XmlDocument
 from winrt.windows.ui.notifications import ToastNotification, ToastNotificationManager
 
@@ -29,7 +29,7 @@ from core.utils.win32.win32_accent import Blur
 
 def is_valid_qobject[T](obj: T | None) -> TypeGuard[T]:
     """Check if the object is a valid QObject with specific type"""
-    return obj is not None and isinstance(obj, QObject) and not sip.isdeleted(obj)
+    return obj is not None and isinstance(obj, QObject) and isValid(obj)
 
 
 def app_data_path(filename: str = None) -> Path:
@@ -402,6 +402,8 @@ class PopupWidget(QWidget):
 
             self.hide_animated()
             return True
+        if not isinstance(obj, QObject):
+            return False
         return super().eventFilter(obj, event)
 
     def hideEvent(self, event):
@@ -572,7 +574,7 @@ class ScrollingLabel(QLabel):
         self._update_text_metrics()
         self._scroll_text()  # scroll once to avoid flickering
 
-    @pyqtSlot()
+    @Slot()
     def _scroll_text(self):
         if self._style == ScrollingLabel.Style.SCROLL_LEFT:
             self._offset += 1

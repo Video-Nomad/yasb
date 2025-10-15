@@ -4,9 +4,9 @@ import os
 import re
 import winreg
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QCursor
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel, QVBoxLayout
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QCursor
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QVBoxLayout
 from win32con import WM_INPUTLANGCHANGEREQUEST
 
 from core.utils.utilities import PopupWidget, add_shadow, build_widget_label

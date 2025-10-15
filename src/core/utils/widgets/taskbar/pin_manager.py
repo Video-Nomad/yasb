@@ -19,8 +19,8 @@ from pathlib import Path
 import win32gui
 import win32process
 from PIL import Image
-from PyQt6.QtCore import QObject, Qt, pyqtSignal
-from PyQt6.QtGui import QPixmap
+from PySide6.QtCore import QObject, Qt, Signal
+from PySide6.QtGui import QPixmap
 
 from core.utils.utilities import app_data_path
 from core.utils.widgets.taskbar.pin_context import (
@@ -43,7 +43,7 @@ from settings import DEBUG
 class TaskbarSignalBus(QObject):
     """Signal bus for coordinating pinned app changes across multiple taskbar instances."""
 
-    pinned_apps_changed = pyqtSignal(str, str)  # action, unique_id
+    pinned_apps_changed = Signal(str, str)  # action, unique_id
 
 
 _taskbar_signal_bus = TaskbarSignalBus()

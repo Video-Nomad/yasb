@@ -8,9 +8,9 @@ import urllib.request
 from typing import Dict
 
 import certifi
-from PyQt6.QtCore import QPropertyAnimation, Qt, QThread, QTimer, QUrl, pyqtSignal
-from PyQt6.QtGui import QDesktopServices, QFont, QFontDatabase, QIcon, QPixmap
-from PyQt6.QtWidgets import (
+from PySide6.QtCore import QPropertyAnimation, Qt, QThread, QTimer, QUrl, Signal
+from PySide6.QtGui import QDesktopServices, QFont, QFontDatabase, QIcon, QPixmap
+from PySide6.QtWidgets import (
     QApplication,
     QDialog,
     QFrame,
@@ -32,7 +32,7 @@ from settings import SCRIPT_PATH
 
 
 class ImageLoader(QThread):
-    finished = pyqtSignal(str, bytes)
+    finished = Signal(str, bytes)
 
     def __init__(self, theme_id, url):
         super().__init__()
@@ -50,8 +50,8 @@ class ImageLoader(QThread):
 
 
 class ThemeLoader(QThread):
-    finished = pyqtSignal(dict)
-    error = pyqtSignal(str)
+    finished = Signal(dict)
+    error = Signal(str)
 
     def run(self):
         try:

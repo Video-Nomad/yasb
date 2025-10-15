@@ -1,4 +1,4 @@
-from PyQt6.QtCore import QEasingCurve, QTimer, QVariantAnimation
+from PySide6.QtCore import QEasingCurve, QTimer, QVariantAnimation
 
 
 class KomorebiAnimation:

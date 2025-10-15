@@ -1,10 +1,10 @@
 import datetime
 
 import psutil
-from PyQt6 import QtCore, QtGui
-from PyQt6.QtCore import QPropertyAnimation, Qt, pyqtSignal
-from PyQt6.QtGui import QCursor
-from PyQt6.QtWidgets import (
+from PySide6 import QtCore, QtGui
+from PySide6.QtCore import QPropertyAnimation, Qt, Signal
+from PySide6.QtGui import QCursor
+from PySide6.QtWidgets import (
     QApplication,
     QFrame,
     QHBoxLayout,
@@ -33,7 +33,7 @@ class BaseStyledWidget(QWidget):
 
 
 class ClickableLabel(QLabel):
-    clicked = pyqtSignal()
+    clicked = Signal()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -123,7 +123,7 @@ class OverlayWidget(BaseStyledWidget, AnimatedWidget):
 
 class PowerMenuWidget(BaseWidget):
     validation_schema = VALIDATION_SCHEMA
-    handle_widget_cli = pyqtSignal(str, str)
+    handle_widget_cli = Signal(str, str)
 
     def __init__(
         self,

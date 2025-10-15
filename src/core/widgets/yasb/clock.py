@@ -5,9 +5,9 @@ from itertools import cycle
 from typing import cast
 
 import pytz
-from PyQt6.QtCore import QDate, QLocale, Qt, QTimer
-from PyQt6.QtGui import QColor
-from PyQt6.QtWidgets import QCalendarWidget, QFrame, QHBoxLayout, QLabel, QSizePolicy, QStyle, QTableView, QVBoxLayout
+from PySide6.QtCore import QDate, QLocale, Qt, QTimer
+from PySide6.QtGui import QColor
+from PySide6.QtWidgets import QCalendarWidget, QFrame, QHBoxLayout, QLabel, QSizePolicy, QStyle, QTableView, QVBoxLayout
 from tzlocal import get_localzone_name
 
 from core.utils.tooltip import set_tooltip
@@ -110,7 +110,7 @@ class CustomCalendar(QCalendarWidget):
     def paintCell(self, painter, rect, date):
         if date < self.minimumDate() or date > self.maximumDate():
             return
-        pydate = date.toPyDate()
+        pydate = date.toPython()
         is_holiday = self.show_holidays and pydate in self._holidays
         if is_holiday:
             # For holidays, we need to handle selection state manually

@@ -4,8 +4,8 @@ from typing import Union
 
 import humanize
 import psutil
-from PyQt6.QtCore import QTimer
-from PyQt6.QtWidgets import QFrame, QHBoxLayout, QLabel
+from PySide6.QtCore import QTimer
+from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel
 
 from core.utils.utilities import add_shadow, build_widget_label
 from core.utils.widgets.animation_manager import AnimationManager

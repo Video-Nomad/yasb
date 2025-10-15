@@ -3,7 +3,7 @@ import logging
 from ctypes import POINTER, Structure, c_ulong, sizeof, windll, wintypes
 
 import win32con
-from PyQt6.QtGui import QScreen
+from PySide6.QtGui import QScreen
 
 import settings
 
@@ -11,7 +11,7 @@ shell32 = windll.shell32
 user32 = windll.user32
 
 """
-Application Desktop Toolbar (with added support for PyQt6)
+Application Desktop Toolbar (with added support for PySide6)
 
 https://docs.microsoft.com/en-us/windows/win32/shell/application-desktop-toolbars
 """

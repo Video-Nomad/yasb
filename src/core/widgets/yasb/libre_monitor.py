@@ -3,9 +3,9 @@ import re
 from collections import deque
 from urllib.parse import quote
 
-from PyQt6.QtCore import QEventLoop, Qt, QUrl
-from PyQt6.QtNetwork import QAuthenticator, QNetworkAccessManager, QNetworkReply, QNetworkRequest
-from PyQt6.QtWidgets import QFrame, QGridLayout, QHBoxLayout, QLabel, QVBoxLayout, QWidget
+from PySide6.QtCore import QEventLoop, Qt, QUrl
+from PySide6.QtNetwork import QAuthenticator, QNetworkAccessManager, QNetworkReply, QNetworkRequest
+from PySide6.QtWidgets import QFrame, QGridLayout, QHBoxLayout, QLabel, QVBoxLayout, QWidget
 
 from core.utils.utilities import PopupWidget, add_shadow, build_widget_label
 from core.utils.widgets.animation_manager import AnimationManager
